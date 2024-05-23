@@ -1,0 +1,548 @@
+run_id = '0'
+
+Running on machine: c4140
+
+Non default parameters:
+{}
+No transfer learning
+
+
+
+
+load_data:
+	Overriding area integral for field zg500
+	Filtering field mrso over France-xarray
+load_data: completed in 1 min 19.8 s
+prepare_XY:
+	make_XY:
+		time_start = 31, time_end = 123, label_period_start = None, label_period_end = None, T = 14
+		make_X:
+		make_X: completed in 6.0 s
+		assign_labels:
+			A_weights = None
+			threshold = 3.113502457203933
+		assign_labels: completed in 1.9 s
+	make_XY: completed in 7.8 s
+	roll_X:
+	roll_X: completed in 0.0 s
+	Mixing
+	 label_period_start = 31; time_start = 31; time_end = 123; label_period_end = 123 
+	Y.shape = (800, 79), from 0 to 79 
+	balance_folds:
+		Balancing folds
+		fold 0 done!
+		fold 1 done!
+		fold 2 done!
+		fold 3 done!
+		fold 4 done!
+		Sums of the balanced 5 folds:
+		[632 632 632 632 632]
+		std/avg = 0.000
+		max relative deviation = 0.000\%
+	balance_folds: completed in 0.0 s
+	Mixing completed in 6.0 s
+	
+	X.shape = (800, 79, 95, 288, 2), Y.shape = (800, 79)
+	Flattened time: X.shape = (63200, 95, 288, 2), Y.shape = (63200,)
+prepare_XY: completed in 25.3 s
+k_fold_cross_val:
+	Models will be trained from scratch
+	=============
+	fold 0 (1/5)
+	=============
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 4.7 s
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R0/fold_0/X_mean.npy and ./R0/fold_0/X_std.npy
+	normalize_X: completed in 17.6 s
+	normalize_X:
+		loading from: ./R0/fold_0/X_mean.npy and ./R0/fold_0/X_std.npy
+	normalize_X: completed in 2.1 s
+	after normalization: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	After margin removal: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	number of training data: 50560 of which 50844.26017706788 negative and -284.2601770678839 positive
+	args = [3, 2, False, 'relu', False, False, 1e-05, 'valid']
+	convolutional args = [[3, 3, 3, 3, 3], [2, 2, 2, 2, 2], [False, False, False, False, False], ['relu', 'relu', 'relu', 'relu', 'relu'], [False, False, False, False, False], [False, False, False, False, False], [1e-05, 1e-05, 1e-05, 1e-05, 1e-05], ['valid', 'valid', 'valid', 'valid', 'valid']]
+	dense args = [['relu', None], [False, False], [0.008, 0.008], [None, None]]
+	
+	Model: "sequential"
+	_________________________________________________________________
+	 Layer (type)                Output Shape              Param #   
+	=================================================================
+	 model (Functional)          (None, 2)                 650658    
+	                                                                 
+	 Sigma_Activation (Sigma_Act  (None, 2)                0         
+	 ivation)                                                        
+	                                                                 
+	=================================================================
+	Total params: 650,658
+	Trainable params: 650,658
+	Non-trainable params: 0
+	_________________________________________________________________
+	
+	Using CRPS loss
+	train_model:
+		scheduler_kwargs = {'lr': 8.2e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		Converting training data to tensors
+		Converting validation data to tensors
+		Training the network on 50560 datapoint and validating on 12640
+		
+		Learning rate for epoch 1 is 8.199999865610152e-05
+		
+		Learning rate for epoch 2 is 8.199999865610152e-05
+		
+		Learning rate for epoch 3 is 8.199999865610152e-05
+		
+		Learning rate for epoch 4 is 8.199999865610152e-05
+		
+		Learning rate for epoch 5 is 8.199999865610152e-05
+		
+		Learning rate for epoch 6 is 8.199999865610152e-05
+		
+		Learning rate for epoch 7 is 8.199999865610152e-05
+		
+		Learning rate for epoch 8 is 8.199999865610152e-05
+		
+		Learning rate for epoch 9 is 8.199999865610152e-05
+		
+		Learning rate for epoch 10 is 8.199999865610152e-05
+		
+		Learning rate for epoch 11 is 8.199999865610152e-05
+		
+		Learning rate for epoch 12 is 8.199999865610152e-05
+		
+		Learning rate for epoch 13 is 8.199999865610152e-05
+		
+		Learning rate for epoch 14 is 8.199999865610152e-05
+		
+		Learning rate for epoch 15 is 8.199999865610152e-05
+		
+		Learning rate for epoch 16 is 8.199999865610152e-05
+		             loss  ParametricCrossEntropyLoss  ...  val_CRPS        lr
+		epoch-1                                        ...                    
+		0        2.246758                    0.180622  ...  0.742331  0.000082
+		1        1.546830                    0.137246  ...  0.727026  0.000082
+		2        1.237116                    0.133211  ...  0.730389  0.000082
+		3        1.070150                    0.130128  ...  0.716934  0.000082
+		4        0.968981                    0.127810  ...  0.720115  0.000082
+		5        0.901855                    0.124561  ...  0.710914  0.000082
+		6        0.852171                    0.122220  ...  0.718886  0.000082
+		7        0.811006                    0.118074  ...  0.730694  0.000082
+		8        0.775112                    0.115520  ...  0.745095  0.000082
+		9        0.740866                    0.111490  ...  0.754132  0.000082
+		10       0.711510                    0.107293  ...  0.784025  0.000082
+		11       0.683559                    0.103812  ...  0.755836  0.000082
+		12       0.650491                    0.098317  ...  0.829928  0.000082
+		13       0.617771                    0.094020  ...  0.818318  0.000082
+		14       0.594942                    0.090496  ...  0.817901  0.000082
+		15       0.565981                    0.085145  ...  0.833733  0.000082
+		
+		[16 rows x 9 columns]
+		score = 0.1294960379600525
+	train_model: completed in 2 min 37.7 s
+	RAM memory: 2.181e+11
+	=============
+	fold 1 (2/5)
+	=============
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 4.7 s
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R0/fold_1/X_mean.npy and ./R0/fold_1/X_std.npy
+	normalize_X: completed in 18.0 s
+	normalize_X:
+		loading from: ./R0/fold_1/X_mean.npy and ./R0/fold_1/X_std.npy
+	normalize_X: completed in 2.1 s
+	after normalization: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	After margin removal: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	number of training data: 50560 of which 50776.057928270864 negative and -216.05792827086134 positive
+	args = [3, 2, False, 'relu', False, False, 1e-05, 'valid']
+	convolutional args = [[3, 3, 3, 3, 3], [2, 2, 2, 2, 2], [False, False, False, False, False], ['relu', 'relu', 'relu', 'relu', 'relu'], [False, False, False, False, False], [False, False, False, False, False], [1e-05, 1e-05, 1e-05, 1e-05, 1e-05], ['valid', 'valid', 'valid', 'valid', 'valid']]
+	dense args = [['relu', None], [False, False], [0.008, 0.008], [None, None]]
+	
+	Model: "sequential"
+	_________________________________________________________________
+	 Layer (type)                Output Shape              Param #   
+	=================================================================
+	 model (Functional)          (None, 2)                 650658    
+	                                                                 
+	 Sigma_Activation (Sigma_Act  (None, 2)                0         
+	 ivation)                                                        
+	                                                                 
+	=================================================================
+	Total params: 650,658
+	Trainable params: 650,658
+	Non-trainable params: 0
+	_________________________________________________________________
+	
+	Using CRPS loss
+	train_model:
+		scheduler_kwargs = {'lr': 8.2e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		Converting training data to tensors
+		Converting validation data to tensors
+		Training the network on 50560 datapoint and validating on 12640
+		
+		Learning rate for epoch 1 is 8.199999865610152e-05
+		
+		Learning rate for epoch 2 is 8.199999865610152e-05
+		
+		Learning rate for epoch 3 is 8.199999865610152e-05
+		
+		Learning rate for epoch 4 is 8.199999865610152e-05
+		
+		Learning rate for epoch 5 is 8.199999865610152e-05
+		
+		Learning rate for epoch 6 is 8.199999865610152e-05
+		
+		Learning rate for epoch 7 is 8.199999865610152e-05
+		
+		Learning rate for epoch 8 is 8.199999865610152e-05
+		
+		Learning rate for epoch 9 is 8.199999865610152e-05
+		
+		Learning rate for epoch 10 is 8.199999865610152e-05
+		
+		Learning rate for epoch 11 is 8.199999865610152e-05
+		
+		Learning rate for epoch 12 is 8.199999865610152e-05
+		
+		Learning rate for epoch 13 is 8.199999865610152e-05
+		
+		Learning rate for epoch 14 is 8.199999865610152e-05
+		             loss  ParametricCrossEntropyLoss  ...  val_CRPS        lr
+		epoch-1                                        ...                    
+		0        2.229504                    0.189691  ...  0.740746  0.000082
+		1        1.517256                    0.137690  ...  0.732695  0.000082
+		2        1.216055                    0.134175  ...  0.721620  0.000082
+		3        1.053681                    0.130909  ...  0.717081  0.000082
+		4        0.958243                    0.128354  ...  0.722494  0.000082
+		5        0.892766                    0.125474  ...  0.716462  0.000082
+		6        0.844541                    0.122759  ...  0.733517  0.000082
+		7        0.809202                    0.120518  ...  0.724971  0.000082
+		8        0.772579                    0.115912  ...  0.734357  0.000082
+		9        0.743813                    0.113374  ...  0.746294  0.000082
+		10       0.717265                    0.110582  ...  0.747412  0.000082
+		11       0.687466                    0.106908  ...  0.761317  0.000082
+		12       0.660120                    0.102931  ...  0.791867  0.000082
+		13       0.631693                    0.099022  ...  0.793765  0.000082
+		
+		[14 rows x 9 columns]
+		score = 0.13642701506614685
+	train_model: completed in 2 min 12.9 s
+	RAM memory: 2.351e+11
+	=============
+	fold 2 (3/5)
+	=============
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 13.0 s
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R0/fold_2/X_mean.npy and ./R0/fold_2/X_std.npy
+	normalize_X: completed in 34.8 s
+	normalize_X:
+		loading from: ./R0/fold_2/X_mean.npy and ./R0/fold_2/X_std.npy
+	normalize_X: completed in 2.1 s
+	after normalization: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	After margin removal: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	number of training data: 50560 of which 51998.273299213346 negative and -1438.2732992133472 positive
+	args = [3, 2, False, 'relu', False, False, 1e-05, 'valid']
+	convolutional args = [[3, 3, 3, 3, 3], [2, 2, 2, 2, 2], [False, False, False, False, False], ['relu', 'relu', 'relu', 'relu', 'relu'], [False, False, False, False, False], [False, False, False, False, False], [1e-05, 1e-05, 1e-05, 1e-05, 1e-05], ['valid', 'valid', 'valid', 'valid', 'valid']]
+	dense args = [['relu', None], [False, False], [0.008, 0.008], [None, None]]
+	
+	Model: "sequential"
+	_________________________________________________________________
+	 Layer (type)                Output Shape              Param #   
+	=================================================================
+	 model (Functional)          (None, 2)                 650658    
+	                                                                 
+	 Sigma_Activation (Sigma_Act  (None, 2)                0         
+	 ivation)                                                        
+	                                                                 
+	=================================================================
+	Total params: 650,658
+	Trainable params: 650,658
+	Non-trainable params: 0
+	_________________________________________________________________
+	
+	Using CRPS loss
+	train_model:
+		scheduler_kwargs = {'lr': 8.2e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		Converting training data to tensors
+		Converting validation data to tensors
+		Training the network on 50560 datapoint and validating on 12640
+		
+		Learning rate for epoch 1 is 8.199999865610152e-05
+		
+		Learning rate for epoch 2 is 8.199999865610152e-05
+		
+		Learning rate for epoch 3 is 8.199999865610152e-05
+		
+		Learning rate for epoch 4 is 8.199999865610152e-05
+		
+		Learning rate for epoch 5 is 8.199999865610152e-05
+		
+		Learning rate for epoch 6 is 8.199999865610152e-05
+		
+		Learning rate for epoch 7 is 8.199999865610152e-05
+		
+		Learning rate for epoch 8 is 8.199999865610152e-05
+		
+		Learning rate for epoch 9 is 8.199999865610152e-05
+		
+		Learning rate for epoch 10 is 8.199999865610152e-05
+		
+		Learning rate for epoch 11 is 8.199999865610152e-05
+		
+		Learning rate for epoch 12 is 8.199999865610152e-05
+		
+		Learning rate for epoch 13 is 8.199999865610152e-05
+		             loss  ParametricCrossEntropyLoss  ...  val_CRPS        lr
+		epoch-1                                        ...                    
+		0        2.240530                    0.186213  ...  0.744535  0.000082
+		1        1.529287                    0.138284  ...  0.738391  0.000082
+		2        1.222647                    0.134540  ...  0.725418  0.000082
+		3        1.059749                    0.130835  ...  0.724828  0.000082
+		4        0.961850                    0.126927  ...  0.726225  0.000082
+		5        0.899464                    0.124769  ...  0.730019  0.000082
+		6        0.848762                    0.121716  ...  0.728848  0.000082
+		7        0.806482                    0.118233  ...  0.769346  0.000082
+		8        0.770919                    0.114452  ...  0.759315  0.000082
+		9        0.736192                    0.111001  ...  0.769723  0.000082
+		10       0.703735                    0.107552  ...  0.779260  0.000082
+		11       0.671385                    0.103271  ...  0.797267  0.000082
+		12       0.650576                    0.100084  ...  0.822290  0.000082
+		
+		[13 rows x 9 columns]
+		score = 0.13572119176387787
+	train_model: completed in 1 min 59.8 s
+	RAM memory: 2.350e+11
+	=============
+	fold 3 (4/5)
+	=============
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 4.7 s
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R0/fold_3/X_mean.npy and ./R0/fold_3/X_std.npy
+	normalize_X: completed in 32.3 s
+	normalize_X:
+		loading from: ./R0/fold_3/X_mean.npy and ./R0/fold_3/X_std.npy
+	normalize_X: completed in 2.1 s
+	after normalization: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	After margin removal: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	number of training data: 50560 of which 51196.11055805184 negative and -636.1105580518446 positive
+	args = [3, 2, False, 'relu', False, False, 1e-05, 'valid']
+	convolutional args = [[3, 3, 3, 3, 3], [2, 2, 2, 2, 2], [False, False, False, False, False], ['relu', 'relu', 'relu', 'relu', 'relu'], [False, False, False, False, False], [False, False, False, False, False], [1e-05, 1e-05, 1e-05, 1e-05, 1e-05], ['valid', 'valid', 'valid', 'valid', 'valid']]
+	dense args = [['relu', None], [False, False], [0.008, 0.008], [None, None]]
+	
+	Model: "sequential"
+	_________________________________________________________________
+	 Layer (type)                Output Shape              Param #   
+	=================================================================
+	 model (Functional)          (None, 2)                 650658    
+	                                                                 
+	 Sigma_Activation (Sigma_Act  (None, 2)                0         
+	 ivation)                                                        
+	                                                                 
+	=================================================================
+	Total params: 650,658
+	Trainable params: 650,658
+	Non-trainable params: 0
+	_________________________________________________________________
+	
+	Using CRPS loss
+	train_model:
+		scheduler_kwargs = {'lr': 8.2e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		Converting training data to tensors
+		Converting validation data to tensors
+		Training the network on 50560 datapoint and validating on 12640
+		
+		Learning rate for epoch 1 is 8.199999865610152e-05
+		
+		Learning rate for epoch 2 is 8.199999865610152e-05
+		
+		Learning rate for epoch 3 is 8.199999865610152e-05
+		
+		Learning rate for epoch 4 is 8.199999865610152e-05
+		
+		Learning rate for epoch 5 is 8.199999865610152e-05
+		
+		Learning rate for epoch 6 is 8.199999865610152e-05
+		
+		Learning rate for epoch 7 is 8.199999865610152e-05
+		
+		Learning rate for epoch 8 is 8.199999865610152e-05
+		
+		Learning rate for epoch 9 is 8.199999865610152e-05
+		
+		Learning rate for epoch 10 is 8.199999865610152e-05
+		
+		Learning rate for epoch 11 is 8.199999865610152e-05
+		
+		Learning rate for epoch 12 is 8.199999865610152e-05
+		
+		Learning rate for epoch 13 is 8.199999865610152e-05
+		
+		Learning rate for epoch 14 is 8.199999865610152e-05
+		             loss  ParametricCrossEntropyLoss  ...  val_CRPS        lr
+		epoch-1                                        ...                    
+		0        2.221522                    0.188697  ...  0.733602  0.000082
+		1        1.499085                    0.137768  ...  0.723073  0.000082
+		2        1.202235                    0.134442  ...  0.732500  0.000082
+		3        1.047864                    0.131920  ...  0.712178  0.000082
+		4        0.955982                    0.129387  ...  0.716612  0.000082
+		5        0.893517                    0.126477  ...  0.719619  0.000082
+		6        0.845847                    0.123513  ...  0.722223  0.000082
+		7        0.807912                    0.119376  ...  0.734690  0.000082
+		8        0.771571                    0.115913  ...  0.734488  0.000082
+		9        0.740488                    0.112592  ...  0.752549  0.000082
+		10       0.711673                    0.108774  ...  0.760356  0.000082
+		11       0.680122                    0.104763  ...  0.773741  0.000082
+		12       0.653970                    0.100793  ...  0.800191  0.000082
+		13       0.625376                    0.096429  ...  0.816463  0.000082
+		
+		[14 rows x 9 columns]
+		score = 0.13336780667304993
+	train_model: completed in 2 min 4.2 s
+	RAM memory: 2.350e+11
+	=============
+	fold 4 (5/5)
+	=============
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 1.2 s
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R0/fold_4/X_mean.npy and ./R0/fold_4/X_std.npy
+	normalize_X: completed in 22.6 s
+	normalize_X:
+		loading from: ./R0/fold_4/X_mean.npy and ./R0/fold_4/X_std.npy
+	normalize_X: completed in 2.1 s
+	after normalization: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	After margin removal: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	number of training data: 50560 of which 51071.648143603656 negative and -511.64814360365324 positive
+	args = [3, 2, False, 'relu', False, False, 1e-05, 'valid']
+	convolutional args = [[3, 3, 3, 3, 3], [2, 2, 2, 2, 2], [False, False, False, False, False], ['relu', 'relu', 'relu', 'relu', 'relu'], [False, False, False, False, False], [False, False, False, False, False], [1e-05, 1e-05, 1e-05, 1e-05, 1e-05], ['valid', 'valid', 'valid', 'valid', 'valid']]
+	dense args = [['relu', None], [False, False], [0.008, 0.008], [None, None]]
+	
+	Model: "sequential"
+	_________________________________________________________________
+	 Layer (type)                Output Shape              Param #   
+	=================================================================
+	 model (Functional)          (None, 2)                 650658    
+	                                                                 
+	 Sigma_Activation (Sigma_Act  (None, 2)                0         
+	 ivation)                                                        
+	                                                                 
+	=================================================================
+	Total params: 650,658
+	Trainable params: 650,658
+	Non-trainable params: 0
+	_________________________________________________________________
+	
+	Using CRPS loss
+	train_model:
+		scheduler_kwargs = {'lr': 8.2e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		Converting training data to tensors
+		Converting validation data to tensors
+		Training the network on 50560 datapoint and validating on 12640
+		
+		Learning rate for epoch 1 is 8.199999865610152e-05
+		
+		Learning rate for epoch 2 is 8.199999865610152e-05
+		
+		Learning rate for epoch 3 is 8.199999865610152e-05
+		
+		Learning rate for epoch 4 is 8.199999865610152e-05
+		
+		Learning rate for epoch 5 is 8.199999865610152e-05
+		
+		Learning rate for epoch 6 is 8.199999865610152e-05
+		
+		Learning rate for epoch 7 is 8.199999865610152e-05
+		
+		Learning rate for epoch 8 is 8.199999865610152e-05
+		
+		Learning rate for epoch 9 is 8.199999865610152e-05
+		
+		Learning rate for epoch 10 is 8.199999865610152e-05
+		
+		Learning rate for epoch 11 is 8.199999865610152e-05
+		
+		Learning rate for epoch 12 is 8.199999865610152e-05
+		
+		Learning rate for epoch 13 is 8.199999865610152e-05
+		             loss  ParametricCrossEntropyLoss  ...  val_CRPS        lr
+		epoch-1                                        ...                    
+		0        2.234575                    0.182373  ...  0.759278  0.000082
+		1        1.521271                    0.136496  ...  0.747411  0.000082
+		2        1.217005                    0.132810  ...  0.738412  0.000082
+		3        1.057438                    0.129465  ...  0.742368  0.000082
+		4        0.963171                    0.126487  ...  0.758554  0.000082
+		5        0.898540                    0.123305  ...  0.742377  0.000082
+		6        0.849676                    0.120029  ...  0.748015  0.000082
+		7        0.809721                    0.117091  ...  0.755956  0.000082
+		8        0.773414                    0.113523  ...  0.765666  0.000082
+		9        0.740324                    0.109851  ...  0.778487  0.000082
+		10       0.707143                    0.105168  ...  0.801375  0.000082
+		11       0.676720                    0.101513  ...  0.806013  0.000082
+		12       0.647451                    0.096782  ...  0.828578  0.000082
+		
+		[13 rows x 9 columns]
+		score = 0.1424711048603058
+	train_model: completed in 1 min 55.2 s
+	RAM memory: 2.349e+11
+	
+	Final scores:
+		fold 0: 0.1294960379600525
+		fold 1: 0.13642701506614685
+		fold 2: 0.13572119176387787
+		fold 3: 0.13336780667304993
+		fold 4: 0.1424711048603058
+	Average score: 0.135+/-0.004
+k_fold_cross_val: completed in 13 min 39.8 s
