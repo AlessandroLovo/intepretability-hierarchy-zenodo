@@ -64,7 +64,7 @@
             "u": 1,
             "normalization_mode": "pointwise",
             "fullmetrics": true,
-            "training_epochs": 100,
+            "training_epochs": 200,
             "training_epochs_tl": 10,
             "loss": "crps",
             "prune_threshold": null,
@@ -79,31 +79,21 @@
                 "sigma_activation": "softplus",
                 "min_sigma": null,
                 "create_core_model_kwargs": {
-                    "conv_channels": [
-                        32,
-                        64,
-                        128,
-                        128
+                    "filters_per_field": [
+                        1,
+                        1
                     ],
-                    "kernel_sizes": 3,
-                    "strides": 2,
-                    "padding": "valid",
-                    "batch_normalizations": false,
-                    "conv_activations": "relu",
-                    "conv_dropouts": false,
-                    "max_pool_sizes": false,
-                    "conv_l2coef": 6e-05,
-                    "conv_skip": null,
-                    "rnn_units": null,
-                    "rnn_type": "LSTM",
-                    "rnn_activations": null,
-                    "rnn_dropouts": false,
-                    "rnn_l2coef": null,
-                    "rnn_batch_norm": null,
-                    "rnn_return_sequences": false,
+                    "merge_to_one": true,
+                    "batch_normalization": false,
+                    "regularization": "gradient",
+                    "reg_mode": "l2",
+                    "reg_c": 1,
+                    "reg_weights": "sphere",
+                    "reg_periodicity": true,
+                    "reg_norm": false,
                     "dense_units": [
-                        128,
-                        64,
+                        16,
+                        16,
                         2
                     ],
                     "dense_activations": [
@@ -112,32 +102,35 @@
                         null
                     ],
                     "dense_dropouts": false,
-                    "dense_l2coef": 0.00717,
-                    "dense_batch_norm": null
+                    "dense_l2coef": 0.00426
                 }
             },
             "train_model_kwargs": {
-                "enable_early_stopping": true,
-                "u": 1,
-                "batch_size": 128,
-                "checkpoint_every": 1,
-                "additional_callbacks": [
-                    "csv_logger"
-                ],
-                "return_metric": "val_ParametricCrossEntropyLoss",
-                "trainable_layers": null,
-                "early_stopping_kwargs": {
-                    "monitor": "val_ParametricCrossEntropyLoss",
-                    "min_delta": 0,
-                    "patience": 10,
-                    "mode": "auto"
-                },
-                "scheduler_kwargs": {
-                    "lr": 1.59e-05,
-                    "epoch_tol": null,
-                    "warmup": false,
-                    "lr_min": 0.0005,
-                    "decay": 0.1
+                "load_kernels_from": null,
+                "learn_kernels": true,
+                "orig_train_model_kwargs": {
+                    "enable_early_stopping": true,
+                    "u": 1,
+                    "batch_size": 400,
+                    "checkpoint_every": 1,
+                    "additional_callbacks": [
+                        "csv_logger"
+                    ],
+                    "return_metric": "val_ParametricCrossEntropyLoss",
+                    "trainable_layers": null,
+                    "early_stopping_kwargs": {
+                        "monitor": "val_CRPS",
+                        "min_delta": 0,
+                        "patience": 15,
+                        "mode": "auto"
+                    },
+                    "scheduler_kwargs": {
+                        "lr": 0.0020116,
+                        "epoch_tol": 7,
+                        "warmup": false,
+                        "lr_min": 0.0008463,
+                        "decay": 0.05153
+                    }
                 }
             },
             "optimal_checkpoint_kwargs": {

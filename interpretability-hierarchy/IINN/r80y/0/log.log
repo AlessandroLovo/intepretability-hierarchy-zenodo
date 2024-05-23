@@ -1,64 +1,31 @@
-run_id = '0'
+run_id = '4'
 
-Running on machine: nvidia4air
+Running on machine: epyc2
 
 Non default parameters:
-{}
+{
+    "regularization": "gradient",
+    "reg_c": 1
+}
 No transfer learning
 
 
 
 
-load_data:
-	Overriding area integral for field zg500
-	Filtering field mrso over France-xarray
-load_data: completed in 14.7 s
-prepare_XY:
-	make_XY:
-		time_start = 31, time_end = 123, label_period_start = None, label_period_end = None, T = 14
-		make_X:
-		make_X: completed in 0.6 s
-		assign_labels:
-			A_weights = None
-			threshold = 3.113502457203933
-		assign_labels: completed in 0.3 s
-	make_XY: completed in 0.9 s
-	roll_X:
-	roll_X: completed in 0.0 s
-	Mixing
-	 label_period_start = 31; time_start = 31; time_end = 123; label_period_end = 123 
-	Y.shape = (80, 79), from 0 to 79 
-	balance_folds:
-		Balancing folds
-		fold 2 done!
-		fold 4 done!
-		fold 1 done!
-		fold 0 done!
-		fold 3 done!
-		Sums of the balanced 5 folds:
-		[77 77 77 78 78]
-		std/avg = 0.006
-		max relative deviation = 0.775\%
-	balance_folds: completed in 0.0 s
-	Mixing completed in 0.6 s
-	
-	X.shape = (80, 79, 95, 288, 2), Y.shape = (80, 79)
-	Flattened time: X.shape = (6320, 95, 288, 2), Y.shape = (6320,)
-prepare_XY: completed in 3.0 s
 k_fold_cross_val:
 	Models will be trained from scratch
 	=============
 	fold 0 (1/5)
 	=============
 	k_fold_cross_val_split:
-	k_fold_cross_val_split: completed in 0.5 s
+	k_fold_cross_val_split: completed in 1.5 s
 	normalize_X:
 		0.0000\% of the data have non zero std below 1e-4
-		saving to: ./R0/fold_0/X_mean.npy and ./R0/fold_0/X_std.npy
-	normalize_X: completed in 2.0 s
+		saving to: ./R4--reg_c__1--regularization__gradient/fold_0/X_mean.npy and ./R4--reg_c__1--regularization__gradient/fold_0/X_std.npy
+	normalize_X: completed in 5.6 s
 	normalize_X:
-		loading from: ./R0/fold_0/X_mean.npy and ./R0/fold_0/X_std.npy
-	normalize_X: completed in 0.2 s
+		loading from: ./R4--reg_c__1--regularization__gradient/fold_0/X_mean.npy and ./R4--reg_c__1--regularization__gradient/fold_0/X_std.npy
+	normalize_X: completed in 0.6 s
 	after normalization: X_tr.shape = (5056, 95, 288, 2), X_va.shape = (1264, 95, 288, 2), Y_tr.shape = (5056,), Y_va.shape = (1264,)
 	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
 	margin_removal_with_sliding_window:
@@ -71,108 +38,193 @@ k_fold_cross_val:
 	margin_removal_with_sliding_window: completed in 0.0 s
 	After margin removal: X_tr.shape = (5056, 95, 288, 2), X_va.shape = (1264, 95, 288, 2), Y_tr.shape = (5056,), Y_va.shape = (1264,)
 	number of training data: 5056 of which 5237.888951040013 negative and -181.8889510400129 positive
-	args = [3, 2, False, 'relu', False, False, 6e-05, 'valid']
-	convolutional args = [[3, 3, 3, 3], [2, 2, 2, 2], [False, False, False, False], ['relu', 'relu', 'relu', 'relu'], [False, False, False, False], [False, False, False, False], [6e-05, 6e-05, 6e-05, 6e-05], ['valid', 'valid', 'valid', 'valid']]
-	dense args = [['relu', 'relu', None], [False, False, False], [0.00717, 0.00717, 0.00717], [None, None, None]]
+	dense args = [['relu', 'relu', None], [False, False, False], [0.00426, 0.00426, 0.00426]]
 	
-	Model: "sequential"
+	Model: "sequential_1"
 	_________________________________________________________________
 	 Layer (type)                Output Shape              Param #   
 	=================================================================
-	 model (Functional)          (None, 2)                 1641698   
+	 sequential (Sequential)     (None, 2)                 55058     
 	                                                                 
 	 Sigma_Activation (Sigma_Act  (None, 2)                0         
 	 ivation)                                                        
 	                                                                 
 	=================================================================
-	Total params: 1,641,698
-	Trainable params: 1,641,698
+	Total params: 55,058
+	Trainable params: 55,058
 	Non-trainable params: 0
 	_________________________________________________________________
 	
 	Using CRPS loss
 	train_model:
-		scheduler_kwargs = {'lr': 1.59e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		scheduler_kwargs = {'lr': 0.0020116, 'epoch_tol': 7, 'warmup': False, 'lr_min': 0.0008463, 'decay': 0.05153}
 		Converting training data to tensors
 		Converting validation data to tensors
 		Training the network on 5056 datapoint and validating on 1264
 		
-		Learning rate for epoch 1 is 1.5899999198154546e-05
+		Learning rate for epoch 1 is 0.002011599950492382
 		
-		Learning rate for epoch 2 is 1.5899999198154546e-05
+		Learning rate for epoch 2 is 0.002011599950492382
 		
-		Learning rate for epoch 3 is 1.5899999198154546e-05
+		Learning rate for epoch 3 is 0.002011599950492382
 		
-		Learning rate for epoch 4 is 1.5899999198154546e-05
+		Learning rate for epoch 4 is 0.002011599950492382
 		
-		Learning rate for epoch 5 is 1.5899999198154546e-05
+		Learning rate for epoch 5 is 0.002011599950492382
 		
-		Learning rate for epoch 6 is 1.5899999198154546e-05
+		Learning rate for epoch 6 is 0.002011599950492382
 		
-		Learning rate for epoch 7 is 1.5899999198154546e-05
+		Learning rate for epoch 7 is 0.002011599950492382
 		
-		Learning rate for epoch 8 is 1.5899999198154546e-05
+		Learning rate for epoch 8 is 0.0019105675164610147
 		
-		Learning rate for epoch 9 is 1.5899999198154546e-05
+		Learning rate for epoch 9 is 0.0018146097427234054
 		
-		Learning rate for epoch 10 is 1.5899999198154546e-05
+		Learning rate for epoch 10 is 0.0017234712140634656
 		
-		Learning rate for epoch 11 is 1.5899999198154546e-05
+		Learning rate for epoch 11 is 0.0016369102522730827
 		
-		Learning rate for epoch 12 is 1.5899999198154546e-05
+		Learning rate for epoch 12 is 0.0015546964714303613
 		
-		Learning rate for epoch 13 is 1.5899999198154546e-05
+		Learning rate for epoch 13 is 0.0014766122912988067
 		
-		Learning rate for epoch 14 is 1.5899999198154546e-05
+		Learning rate for epoch 14 is 0.0014024494448676705
 		
-		Learning rate for epoch 15 is 1.5899999198154546e-05
+		Learning rate for epoch 15 is 0.0013320116559043527
 		
-		Learning rate for epoch 16 is 1.5899999198154546e-05
+		Learning rate for epoch 16 is 0.0012651117285713553
 		
-		Learning rate for epoch 17 is 1.5899999198154546e-05
+		Learning rate for epoch 17 is 0.0012015716638416052
 		
-		Learning rate for epoch 18 is 1.5899999198154546e-05
+		Learning rate for epoch 18 is 0.0011412228923290968
 		
-		Learning rate for epoch 19 is 1.5899999198154546e-05
+		Learning rate for epoch 19 is 0.0010839051101356745
 		
-		Learning rate for epoch 20 is 1.5899999198154546e-05
-		             loss  ParametricCrossEntropyLoss  ProbRegLoss      CRPS  val_loss  val_ParametricCrossEntropyLoss  val_ProbRegLoss  val_CRPS        lr
-		epoch-1                                                                                                                                            
-		0        3.600452                    0.735071     6.054119  1.198237  3.488355                        0.650357         4.990835  1.141691  0.000016
-		1        3.401737                    0.517946     3.886829  1.116411  3.275625                        0.346559         2.651950  1.042050  0.000016
-		2        3.158256                    0.250236     2.177129  0.977643  3.075860                        0.225614         2.053746  0.941397  0.000016
-		3        2.967886                    0.208833     1.904989  0.879930  2.967659                        0.235503         2.062273  0.921208  0.000016
-		4        2.829332                    0.195825     1.771625  0.822921  2.828359                        0.206904         1.884871  0.857967  0.000016
-		5        2.718849                    0.190654     1.669530  0.783354  2.752121                        0.205044         1.887957  0.847497  0.000016
-		6        2.628318                    0.177351     1.573006  0.752788  2.698080                        0.201570         1.913835  0.851599  0.000016
-		7        2.556094                    0.177182     1.534777  0.738148  2.604970                        0.182889         1.772850  0.810679  0.000016
-		8        2.490351                    0.169132     1.476179  0.719092  2.553996                        0.189294         1.832753  0.806709  0.000016
-		9        2.435529                    0.168818     1.450381  0.710378  2.507509                        0.176125         1.759879  0.803191  0.000016
-		10       2.382193                    0.163606     1.408118  0.697574  2.471123                        0.176636         1.786937  0.806290  0.000016
-		11       2.336147                    0.162071     1.384148  0.690870  2.456716                        0.182859         1.862846  0.827645  0.000016
-		12       2.296572                    0.157634     1.357577  0.683802  2.431797                        0.191570         1.980771  0.835834  0.000016
-		13       2.250595                    0.157333     1.320454  0.670779  2.364739                        0.179635         1.829641  0.799519  0.000016
-		14       2.210143                    0.154593     1.279914  0.660318  2.340242                        0.178532         1.821002  0.803506  0.000016
-		15       2.176334                    0.151712     1.254317  0.652050  2.316864                        0.182300         1.890697  0.806870  0.000016
-		16       2.139314                    0.148922     1.208996  0.640386  2.306400                        0.192011         2.093993  0.821004  0.000016
-		17       2.106189                    0.147624     1.187196  0.632853  2.274133                        0.187469         2.099227  0.812004  0.000016
-		18       2.075220                    0.143096     1.153050  0.623927  2.275526                        0.192457         2.163159  0.834282  0.000016
-		19       2.040755                    0.145608     1.120690  0.612410  2.250183                        0.193534         2.266227  0.828852  0.000016
-		score = 0.1761254072189331
-	train_model: completed in 59.7 s
-	RAM memory: 1.782e+10
+		Learning rate for epoch 20 is 0.0010294661624357104
+		
+		Learning rate for epoch 21 is 0.0009777614613994956
+		
+		Learning rate for epoch 22 is 0.0009286535205319524
+		
+		Learning rate for epoch 23 is 0.0008820120128802955
+		
+		Learning rate for epoch 24 is 0.0008462999830953777
+		
+		Learning rate for epoch 25 is 0.0008462999830953777
+		
+		Learning rate for epoch 26 is 0.0008462999830953777
+		
+		Learning rate for epoch 27 is 0.0008462999830953777
+		
+		Learning rate for epoch 28 is 0.0008462999830953777
+		
+		Learning rate for epoch 29 is 0.0008462999830953777
+		
+		Learning rate for epoch 30 is 0.0008462999830953777
+		
+		Learning rate for epoch 31 is 0.0008462999830953777
+		
+		Learning rate for epoch 32 is 0.0008462999830953777
+		
+		Learning rate for epoch 33 is 0.0008462999830953777
+		
+		Learning rate for epoch 34 is 0.0008462999830953777
+		
+		Learning rate for epoch 35 is 0.0008462999830953777
+		
+		Learning rate for epoch 36 is 0.0008462999830953777
+		
+		Learning rate for epoch 37 is 0.0008462999830953777
+		
+		Learning rate for epoch 38 is 0.0008462999830953777
+		
+		Learning rate for epoch 39 is 0.0008462999830953777
+		
+		Learning rate for epoch 40 is 0.0008462999830953777
+		
+		Learning rate for epoch 41 is 0.0008462999830953777
+		
+		Learning rate for epoch 42 is 0.0008462999830953777
+		
+		Learning rate for epoch 43 is 0.0008462999830953777
+		
+		Learning rate for epoch 44 is 0.0008462999830953777
+		
+		Learning rate for epoch 45 is 0.0008462999830953777
+		
+		Learning rate for epoch 46 is 0.0008462999830953777
+		
+		Learning rate for epoch 47 is 0.0008462999830953777
+		
+		Learning rate for epoch 48 is 0.0008462999830953777
+		
+		Learning rate for epoch 49 is 0.0008462999830953777
+		
+		Learning rate for epoch 50 is 0.0008462999830953777
+		
+		Learning rate for epoch 51 is 0.0008462999830953777
+		
+		Learning rate for epoch 52 is 0.0008462999830953777
+		
+		Learning rate for epoch 53 is 0.0008462999830953777
+		
+		Learning rate for epoch 54 is 0.0008462999830953777
+		
+		Learning rate for epoch 55 is 0.0008462999830953777
+		
+		Learning rate for epoch 56 is 0.0008462999830953777
+		
+		Learning rate for epoch 57 is 0.0008462999830953777
+		
+		Learning rate for epoch 58 is 0.0008462999830953777
+		
+		Learning rate for epoch 59 is 0.0008462999830953777
+		
+		Learning rate for epoch 60 is 0.0008462999830953777
+		
+		Learning rate for epoch 61 is 0.0008462999830953777
+		
+		Learning rate for epoch 62 is 0.0008462999830953777
+		
+		Learning rate for epoch 63 is 0.0008462999830953777
+		
+		Learning rate for epoch 64 is 0.0008462999830953777
+		
+		Learning rate for epoch 65 is 0.0008462999830953777
+		
+		Learning rate for epoch 66 is 0.0008462999830953777
+		
+		Learning rate for epoch 67 is 0.0008462999830953777
+		               loss  ParametricCrossEntropyLoss  ...  val_CRPS        lr
+		epoch-1                                          ...                    
+		0        717.373413                    0.770944  ...  1.071723  0.002012
+		1        247.956161                    0.470295  ...  1.030051  0.002012
+		2         92.734657                    0.365787  ...  1.025404  0.002012
+		3         40.504192                    0.334266  ...  1.017171  0.002012
+		4         20.564615                    0.317658  ...  1.009900  0.002012
+		...             ...                         ...  ...       ...       ...
+		62         0.812497                    0.158700  ...  0.826149  0.000846
+		63         0.808433                    0.158853  ...  0.819683  0.000846
+		64         0.805408                    0.156566  ...  0.830385  0.000846
+		65         0.803556                    0.156842  ...  0.832210  0.000846
+		66         0.801515                    0.156844  ...  0.824951  0.000846
+		
+		[67 rows x 9 columns]
+		score = 0.1466471552848816
+	train_model: completed in 1 min 15.9 s
+	RAM memory: 3.213e+10
 	=============
 	fold 1 (2/5)
 	=============
 	k_fold_cross_val_split:
-	k_fold_cross_val_split: completed in 0.5 s
+	k_fold_cross_val_split: completed in 1.2 s
 	normalize_X:
 		0.0000\% of the data have non zero std below 1e-4
-		saving to: ./R0/fold_1/X_mean.npy and ./R0/fold_1/X_std.npy
-	normalize_X: completed in 2.0 s
+		saving to: ./R4--reg_c__1--regularization__gradient/fold_1/X_mean.npy and ./R4--reg_c__1--regularization__gradient/fold_1/X_std.npy
+	normalize_X: completed in 5.7 s
 	normalize_X:
-		loading from: ./R0/fold_1/X_mean.npy and ./R0/fold_1/X_std.npy
-	normalize_X: completed in 0.2 s
+		loading from: ./R4--reg_c__1--regularization__gradient/fold_1/X_mean.npy and ./R4--reg_c__1--regularization__gradient/fold_1/X_std.npy
+	normalize_X: completed in 0.3 s
 	after normalization: X_tr.shape = (5056, 95, 288, 2), X_va.shape = (1264, 95, 288, 2), Y_tr.shape = (5056,), Y_va.shape = (1264,)
 	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
 	margin_removal_with_sliding_window:
@@ -185,96 +237,189 @@ k_fold_cross_val:
 	margin_removal_with_sliding_window: completed in 0.0 s
 	After margin removal: X_tr.shape = (5056, 95, 288, 2), X_va.shape = (1264, 95, 288, 2), Y_tr.shape = (5056,), Y_va.shape = (1264,)
 	number of training data: 5056 of which 5330.196425155069 negative and -274.1964251550694 positive
-	args = [3, 2, False, 'relu', False, False, 6e-05, 'valid']
-	convolutional args = [[3, 3, 3, 3], [2, 2, 2, 2], [False, False, False, False], ['relu', 'relu', 'relu', 'relu'], [False, False, False, False], [False, False, False, False], [6e-05, 6e-05, 6e-05, 6e-05], ['valid', 'valid', 'valid', 'valid']]
-	dense args = [['relu', 'relu', None], [False, False, False], [0.00717, 0.00717, 0.00717], [None, None, None]]
+	dense args = [['relu', 'relu', None], [False, False, False], [0.00426, 0.00426, 0.00426]]
 	
-	Model: "sequential"
+	Model: "sequential_1"
 	_________________________________________________________________
 	 Layer (type)                Output Shape              Param #   
 	=================================================================
-	 model (Functional)          (None, 2)                 1641698   
+	 sequential (Sequential)     (None, 2)                 55058     
 	                                                                 
 	 Sigma_Activation (Sigma_Act  (None, 2)                0         
 	 ivation)                                                        
 	                                                                 
 	=================================================================
-	Total params: 1,641,698
-	Trainable params: 1,641,698
+	Total params: 55,058
+	Trainable params: 55,058
 	Non-trainable params: 0
 	_________________________________________________________________
 	
 	Using CRPS loss
 	train_model:
-		scheduler_kwargs = {'lr': 1.59e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		scheduler_kwargs = {'lr': 0.0020116, 'epoch_tol': 7, 'warmup': False, 'lr_min': 0.0008463, 'decay': 0.05153}
 		Converting training data to tensors
 		Converting validation data to tensors
 		Training the network on 5056 datapoint and validating on 1264
 		
-		Learning rate for epoch 1 is 1.5899999198154546e-05
+		Learning rate for epoch 1 is 0.002011599950492382
 		
-		Learning rate for epoch 2 is 1.5899999198154546e-05
+		Learning rate for epoch 2 is 0.002011599950492382
 		
-		Learning rate for epoch 3 is 1.5899999198154546e-05
+		Learning rate for epoch 3 is 0.002011599950492382
 		
-		Learning rate for epoch 4 is 1.5899999198154546e-05
+		Learning rate for epoch 4 is 0.002011599950492382
 		
-		Learning rate for epoch 5 is 1.5899999198154546e-05
+		Learning rate for epoch 5 is 0.002011599950492382
 		
-		Learning rate for epoch 6 is 1.5899999198154546e-05
+		Learning rate for epoch 6 is 0.002011599950492382
 		
-		Learning rate for epoch 7 is 1.5899999198154546e-05
+		Learning rate for epoch 7 is 0.002011599950492382
 		
-		Learning rate for epoch 8 is 1.5899999198154546e-05
+		Learning rate for epoch 8 is 0.0019105675164610147
 		
-		Learning rate for epoch 9 is 1.5899999198154546e-05
+		Learning rate for epoch 9 is 0.0018146097427234054
 		
-		Learning rate for epoch 10 is 1.5899999198154546e-05
+		Learning rate for epoch 10 is 0.0017234712140634656
 		
-		Learning rate for epoch 11 is 1.5899999198154546e-05
+		Learning rate for epoch 11 is 0.0016369102522730827
 		
-		Learning rate for epoch 12 is 1.5899999198154546e-05
+		Learning rate for epoch 12 is 0.0015546964714303613
 		
-		Learning rate for epoch 13 is 1.5899999198154546e-05
+		Learning rate for epoch 13 is 0.0014766122912988067
 		
-		Learning rate for epoch 14 is 1.5899999198154546e-05
+		Learning rate for epoch 14 is 0.0014024494448676705
 		
-		Learning rate for epoch 15 is 1.5899999198154546e-05
+		Learning rate for epoch 15 is 0.0013320116559043527
 		
-		Learning rate for epoch 16 is 1.5899999198154546e-05
-		             loss  ParametricCrossEntropyLoss  ProbRegLoss      CRPS  val_loss  val_ParametricCrossEntropyLoss  val_ProbRegLoss  val_CRPS        lr
-		epoch-1                                                                                                                                            
-		0        3.586824                    0.619982     5.066571  1.177542  3.427381                        0.410244         3.034960  1.077075  0.000016
-		1        3.351886                    0.264473     2.397334  1.055758  3.234360                        0.227150         2.149044  0.995826  0.000016
-		2        3.177242                    0.226088     2.126860  0.992411  3.083522                        0.223140         2.048233  0.946736  0.000016
-		3        2.989112                    0.205467     1.916552  0.895790  2.905399                        0.195488         1.850473  0.856314  0.000016
-		4        2.836128                    0.188996     1.738448  0.823261  2.811210                        0.200076         1.826533  0.834937  0.000016
-		5        2.726201                    0.180130     1.630726  0.782169  2.730671                        0.192066         1.796500  0.817398  0.000016
-		6        2.637640                    0.169312     1.541297  0.751557  2.678144                        0.192835         1.827648  0.818995  0.000016
-		7        2.566367                    0.161746     1.483674  0.731236  2.643250                        0.201205         1.903363  0.831740  0.000016
-		8        2.506124                    0.162158     1.447193  0.718550  2.595085                        0.195385         1.878670  0.827198  0.000016
-		9        2.449151                    0.155523     1.393883  0.701499  2.558420                        0.193568         1.926849  0.830417  0.000016
-		10       2.395269                    0.151110     1.344195  0.686155  2.537385                        0.201920         1.972895  0.845137  0.000016
-		11       2.349968                    0.150702     1.315641  0.676451  2.496115                        0.196158         1.994789  0.838656  0.000016
-		12       2.307284                    0.148537     1.279414  0.664788  2.478429                        0.210572         2.095412  0.851329  0.000016
-		13       2.264552                    0.144274     1.230954  0.651961  2.448318                        0.209521         2.115962  0.850362  0.000016
-		14       2.229203                    0.141721     1.214502  0.645299  2.421983                        0.202712         2.080405  0.850799  0.000016
-		15       2.192459                    0.139206     1.162563  0.632953  2.409332                        0.213042         2.215401  0.862751  0.000016
-		score = 0.19206613302230835
-	train_model: completed in 42.8 s
-	RAM memory: 1.921e+10
+		Learning rate for epoch 16 is 0.0012651117285713553
+		
+		Learning rate for epoch 17 is 0.0012015716638416052
+		
+		Learning rate for epoch 18 is 0.0011412228923290968
+		
+		Learning rate for epoch 19 is 0.0010839051101356745
+		
+		Learning rate for epoch 20 is 0.0010294661624357104
+		
+		Learning rate for epoch 21 is 0.0009777614613994956
+		
+		Learning rate for epoch 22 is 0.0009286535205319524
+		
+		Learning rate for epoch 23 is 0.0008820120128802955
+		
+		Learning rate for epoch 24 is 0.0008462999830953777
+		
+		Learning rate for epoch 25 is 0.0008462999830953777
+		
+		Learning rate for epoch 26 is 0.0008462999830953777
+		
+		Learning rate for epoch 27 is 0.0008462999830953777
+		
+		Learning rate for epoch 28 is 0.0008462999830953777
+		
+		Learning rate for epoch 29 is 0.0008462999830953777
+		
+		Learning rate for epoch 30 is 0.0008462999830953777
+		
+		Learning rate for epoch 31 is 0.0008462999830953777
+		
+		Learning rate for epoch 32 is 0.0008462999830953777
+		
+		Learning rate for epoch 33 is 0.0008462999830953777
+		
+		Learning rate for epoch 34 is 0.0008462999830953777
+		
+		Learning rate for epoch 35 is 0.0008462999830953777
+		
+		Learning rate for epoch 36 is 0.0008462999830953777
+		
+		Learning rate for epoch 37 is 0.0008462999830953777
+		
+		Learning rate for epoch 38 is 0.0008462999830953777
+		
+		Learning rate for epoch 39 is 0.0008462999830953777
+		
+		Learning rate for epoch 40 is 0.0008462999830953777
+		
+		Learning rate for epoch 41 is 0.0008462999830953777
+		
+		Learning rate for epoch 42 is 0.0008462999830953777
+		
+		Learning rate for epoch 43 is 0.0008462999830953777
+		
+		Learning rate for epoch 44 is 0.0008462999830953777
+		
+		Learning rate for epoch 45 is 0.0008462999830953777
+		
+		Learning rate for epoch 46 is 0.0008462999830953777
+		
+		Learning rate for epoch 47 is 0.0008462999830953777
+		
+		Learning rate for epoch 48 is 0.0008462999830953777
+		
+		Learning rate for epoch 49 is 0.0008462999830953777
+		
+		Learning rate for epoch 50 is 0.0008462999830953777
+		
+		Learning rate for epoch 51 is 0.0008462999830953777
+		
+		Learning rate for epoch 52 is 0.0008462999830953777
+		
+		Learning rate for epoch 53 is 0.0008462999830953777
+		
+		Learning rate for epoch 54 is 0.0008462999830953777
+		
+		Learning rate for epoch 55 is 0.0008462999830953777
+		
+		Learning rate for epoch 56 is 0.0008462999830953777
+		
+		Learning rate for epoch 57 is 0.0008462999830953777
+		
+		Learning rate for epoch 58 is 0.0008462999830953777
+		
+		Learning rate for epoch 59 is 0.0008462999830953777
+		
+		Learning rate for epoch 60 is 0.0008462999830953777
+		
+		Learning rate for epoch 61 is 0.0008462999830953777
+		
+		Learning rate for epoch 62 is 0.0008462999830953777
+		
+		Learning rate for epoch 63 is 0.0008462999830953777
+		
+		Learning rate for epoch 64 is 0.0008462999830953777
+		
+		Learning rate for epoch 65 is 0.0008462999830953777
+		               loss  ParametricCrossEntropyLoss  ...  val_CRPS        lr
+		epoch-1                                          ...                    
+		0        727.013733                    0.652864  ...  1.148179  0.002012
+		1        248.784363                    0.368799  ...  0.937022  0.002012
+		2         91.806648                    0.308126  ...  0.878082  0.002012
+		3         39.583694                    0.259260  ...  0.846712  0.002012
+		4         19.826117                    0.229949  ...  0.827899  0.002012
+		...             ...                         ...  ...       ...       ...
+		60         0.824712                    0.158412  ...  0.780567  0.000846
+		61         0.824124                    0.160465  ...  0.778867  0.000846
+		62         0.821329                    0.158801  ...  0.785451  0.000846
+		63         0.816703                    0.158066  ...  0.787516  0.000846
+		64         0.814795                    0.156045  ...  0.777153  0.000846
+		
+		[65 rows x 9 columns]
+		score = 0.14995507895946503
+	train_model: completed in 1 min 11.0 s
+	RAM memory: 3.192e+10
 	=============
 	fold 2 (3/5)
 	=============
 	k_fold_cross_val_split:
-	k_fold_cross_val_split: completed in 0.5 s
+	k_fold_cross_val_split: completed in 1.7 s
 	normalize_X:
 		0.0000\% of the data have non zero std below 1e-4
-		saving to: ./R0/fold_2/X_mean.npy and ./R0/fold_2/X_std.npy
-	normalize_X: completed in 2.1 s
+		saving to: ./R4--reg_c__1--regularization__gradient/fold_2/X_mean.npy and ./R4--reg_c__1--regularization__gradient/fold_2/X_std.npy
+	normalize_X: completed in 5.6 s
 	normalize_X:
-		loading from: ./R0/fold_2/X_mean.npy and ./R0/fold_2/X_std.npy
-	normalize_X: completed in 0.2 s
+		loading from: ./R4--reg_c__1--regularization__gradient/fold_2/X_mean.npy and ./R4--reg_c__1--regularization__gradient/fold_2/X_std.npy
+	normalize_X: completed in 0.9 s
 	after normalization: X_tr.shape = (5056, 95, 288, 2), X_va.shape = (1264, 95, 288, 2), Y_tr.shape = (5056,), Y_va.shape = (1264,)
 	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
 	margin_removal_with_sliding_window:
@@ -287,117 +432,211 @@ k_fold_cross_val:
 	margin_removal_with_sliding_window: completed in 0.0 s
 	After margin removal: X_tr.shape = (5056, 95, 288, 2), X_va.shape = (1264, 95, 288, 2), Y_tr.shape = (5056,), Y_va.shape = (1264,)
 	number of training data: 5056 of which 4685.531996924793 negative and 370.4680030752073 positive
-	args = [3, 2, False, 'relu', False, False, 6e-05, 'valid']
-	convolutional args = [[3, 3, 3, 3], [2, 2, 2, 2], [False, False, False, False], ['relu', 'relu', 'relu', 'relu'], [False, False, False, False], [False, False, False, False], [6e-05, 6e-05, 6e-05, 6e-05], ['valid', 'valid', 'valid', 'valid']]
-	dense args = [['relu', 'relu', None], [False, False, False], [0.00717, 0.00717, 0.00717], [None, None, None]]
+	dense args = [['relu', 'relu', None], [False, False, False], [0.00426, 0.00426, 0.00426]]
 	
-	Model: "sequential"
+	Model: "sequential_1"
 	_________________________________________________________________
 	 Layer (type)                Output Shape              Param #   
 	=================================================================
-	 model (Functional)          (None, 2)                 1641698   
+	 sequential (Sequential)     (None, 2)                 55058     
 	                                                                 
 	 Sigma_Activation (Sigma_Act  (None, 2)                0         
 	 ivation)                                                        
 	                                                                 
 	=================================================================
-	Total params: 1,641,698
-	Trainable params: 1,641,698
+	Total params: 55,058
+	Trainable params: 55,058
 	Non-trainable params: 0
 	_________________________________________________________________
 	
 	Using CRPS loss
 	train_model:
-		scheduler_kwargs = {'lr': 1.59e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		scheduler_kwargs = {'lr': 0.0020116, 'epoch_tol': 7, 'warmup': False, 'lr_min': 0.0008463, 'decay': 0.05153}
 		Converting training data to tensors
 		Converting validation data to tensors
 		Training the network on 5056 datapoint and validating on 1264
 		
-		Learning rate for epoch 1 is 1.5899999198154546e-05
+		Learning rate for epoch 1 is 0.002011599950492382
 		
-		Learning rate for epoch 2 is 1.5899999198154546e-05
+		Learning rate for epoch 2 is 0.002011599950492382
 		
-		Learning rate for epoch 3 is 1.5899999198154546e-05
+		Learning rate for epoch 3 is 0.002011599950492382
 		
-		Learning rate for epoch 4 is 1.5899999198154546e-05
+		Learning rate for epoch 4 is 0.002011599950492382
 		
-		Learning rate for epoch 5 is 1.5899999198154546e-05
+		Learning rate for epoch 5 is 0.002011599950492382
 		
-		Learning rate for epoch 6 is 1.5899999198154546e-05
+		Learning rate for epoch 6 is 0.002011599950492382
 		
-		Learning rate for epoch 7 is 1.5899999198154546e-05
+		Learning rate for epoch 7 is 0.002011599950492382
 		
-		Learning rate for epoch 8 is 1.5899999198154546e-05
+		Learning rate for epoch 8 is 0.0019105675164610147
 		
-		Learning rate for epoch 9 is 1.5899999198154546e-05
+		Learning rate for epoch 9 is 0.0018146097427234054
 		
-		Learning rate for epoch 10 is 1.5899999198154546e-05
+		Learning rate for epoch 10 is 0.0017234712140634656
 		
-		Learning rate for epoch 11 is 1.5899999198154546e-05
+		Learning rate for epoch 11 is 0.0016369102522730827
 		
-		Learning rate for epoch 12 is 1.5899999198154546e-05
+		Learning rate for epoch 12 is 0.0015546964714303613
 		
-		Learning rate for epoch 13 is 1.5899999198154546e-05
+		Learning rate for epoch 13 is 0.0014766122912988067
 		
-		Learning rate for epoch 14 is 1.5899999198154546e-05
+		Learning rate for epoch 14 is 0.0014024494448676705
 		
-		Learning rate for epoch 15 is 1.5899999198154546e-05
+		Learning rate for epoch 15 is 0.0013320116559043527
 		
-		Learning rate for epoch 16 is 1.5899999198154546e-05
+		Learning rate for epoch 16 is 0.0012651117285713553
 		
-		Learning rate for epoch 17 is 1.5899999198154546e-05
+		Learning rate for epoch 17 is 0.0012015716638416052
 		
-		Learning rate for epoch 18 is 1.5899999198154546e-05
+		Learning rate for epoch 18 is 0.0011412228923290968
 		
-		Learning rate for epoch 19 is 1.5899999198154546e-05
+		Learning rate for epoch 19 is 0.0010839051101356745
 		
-		Learning rate for epoch 20 is 1.5899999198154546e-05
+		Learning rate for epoch 20 is 0.0010294661624357104
 		
-		Learning rate for epoch 21 is 1.5899999198154546e-05
+		Learning rate for epoch 21 is 0.0009777614613994956
 		
-		Learning rate for epoch 22 is 1.5899999198154546e-05
+		Learning rate for epoch 22 is 0.0009286535205319524
 		
-		Learning rate for epoch 23 is 1.5899999198154546e-05
-		             loss  ParametricCrossEntropyLoss  ProbRegLoss      CRPS  val_loss  val_ParametricCrossEntropyLoss  val_ProbRegLoss  val_CRPS        lr
-		epoch-1                                                                                                                                            
-		0        3.583347                    0.597843     4.776385  1.167172  3.409571                        0.356587         2.879075  1.046304  0.000016
-		1        3.344616                    0.265217     2.330786  1.031591  3.234674                        0.204622         2.104819  0.973903  0.000016
-		2        3.159953                    0.219634     2.035848  0.947352  3.077716                        0.187859         1.973840  0.912551  0.000016
-		3        2.986373                    0.204424     1.852711  0.864682  2.956584                        0.169744         1.887389  0.875741  0.000016
-		4        2.845243                    0.190042     1.689330  0.801137  2.841889                        0.161796         1.789067  0.834349  0.000016
-		5        2.736552                    0.180865     1.583412  0.761560  2.758907                        0.156462         1.751990  0.815212  0.000016
-		6        2.654792                    0.172516     1.517433  0.739130  2.691990                        0.159090         1.759845  0.803883  0.000016
-		7        2.581291                    0.167986     1.451796  0.718128  2.648008                        0.150292         1.808220  0.810344  0.000016
-		8        2.518210                    0.163491     1.402561  0.703186  2.617051                        0.144258         1.867760  0.825111  0.000016
-		9        2.466821                    0.160307     1.374583  0.695263  2.564547                        0.144889         1.819563  0.813127  0.000016
-		10       2.408875                    0.157702     1.318062  0.677500  2.518550                        0.146477         1.803301  0.803548  0.000016
-		11       2.360334                    0.152928     1.273434  0.662785  2.499098                        0.145210         1.904073  0.817464  0.000016
-		12       2.312523                    0.148953     1.224759  0.647932  2.470315                        0.143804         1.924254  0.819263  0.000016
-		13       2.268640                    0.143980     1.166192  0.631420  2.444135                        0.154011         2.151841  0.821004  0.000016
-		14       2.227690                    0.142174     1.122387  0.616930  2.472770                        0.144093         2.455801  0.875229  0.000016
-		15       2.193381                    0.137288     1.081350  0.608474  2.401801                        0.160109         2.270183  0.827010  0.000016
-		16       2.148652                    0.135493     0.997206  0.584177  2.398592                        0.167234         2.608300  0.844662  0.000016
-		17       2.105179                    0.131878     0.920308  0.561852  2.396556                        0.167405         2.951038  0.861646  0.000016
-		18       2.067537                    0.128050     0.850785  0.542703  2.382725                        0.163437         2.719131  0.865395  0.000016
-		19       2.031837                    0.124312     0.773425  0.522514  2.380022                        0.197633         3.646807  0.878558  0.000016
-		20       1.994439                    0.127111     0.703083  0.502271  2.357059                        0.202453         3.421470  0.869942  0.000016
-		21       1.960712                    0.115747     0.609459  0.481575  2.366771                        0.226541         4.491067  0.892800  0.000016
-		22       1.924036                    0.110696     0.513982  0.456653  2.390167                        0.206837         5.404399  0.927604  0.000016
-		score = 0.1438039392232895
-	train_model: completed in 1 min 3.0 s
-	RAM memory: 2.178e+10
+		Learning rate for epoch 23 is 0.0008820120128802955
+		
+		Learning rate for epoch 24 is 0.0008462999830953777
+		
+		Learning rate for epoch 25 is 0.0008462999830953777
+		
+		Learning rate for epoch 26 is 0.0008462999830953777
+		
+		Learning rate for epoch 27 is 0.0008462999830953777
+		
+		Learning rate for epoch 28 is 0.0008462999830953777
+		
+		Learning rate for epoch 29 is 0.0008462999830953777
+		
+		Learning rate for epoch 30 is 0.0008462999830953777
+		
+		Learning rate for epoch 31 is 0.0008462999830953777
+		
+		Learning rate for epoch 32 is 0.0008462999830953777
+		
+		Learning rate for epoch 33 is 0.0008462999830953777
+		
+		Learning rate for epoch 34 is 0.0008462999830953777
+		
+		Learning rate for epoch 35 is 0.0008462999830953777
+		
+		Learning rate for epoch 36 is 0.0008462999830953777
+		
+		Learning rate for epoch 37 is 0.0008462999830953777
+		
+		Learning rate for epoch 38 is 0.0008462999830953777
+		
+		Learning rate for epoch 39 is 0.0008462999830953777
+		
+		Learning rate for epoch 40 is 0.0008462999830953777
+		
+		Learning rate for epoch 41 is 0.0008462999830953777
+		
+		Learning rate for epoch 42 is 0.0008462999830953777
+		
+		Learning rate for epoch 43 is 0.0008462999830953777
+		
+		Learning rate for epoch 44 is 0.0008462999830953777
+		
+		Learning rate for epoch 45 is 0.0008462999830953777
+		
+		Learning rate for epoch 46 is 0.0008462999830953777
+		
+		Learning rate for epoch 47 is 0.0008462999830953777
+		
+		Learning rate for epoch 48 is 0.0008462999830953777
+		
+		Learning rate for epoch 49 is 0.0008462999830953777
+		
+		Learning rate for epoch 50 is 0.0008462999830953777
+		
+		Learning rate for epoch 51 is 0.0008462999830953777
+		
+		Learning rate for epoch 52 is 0.0008462999830953777
+		
+		Learning rate for epoch 53 is 0.0008462999830953777
+		
+		Learning rate for epoch 54 is 0.0008462999830953777
+		
+		Learning rate for epoch 55 is 0.0008462999830953777
+		
+		Learning rate for epoch 56 is 0.0008462999830953777
+		
+		Learning rate for epoch 57 is 0.0008462999830953777
+		
+		Learning rate for epoch 58 is 0.0008462999830953777
+		
+		Learning rate for epoch 59 is 0.0008462999830953777
+		
+		Learning rate for epoch 60 is 0.0008462999830953777
+		
+		Learning rate for epoch 61 is 0.0008462999830953777
+		
+		Learning rate for epoch 62 is 0.0008462999830953777
+		
+		Learning rate for epoch 63 is 0.0008462999830953777
+		
+		Learning rate for epoch 64 is 0.0008462999830953777
+		
+		Learning rate for epoch 65 is 0.0008462999830953777
+		
+		Learning rate for epoch 66 is 0.0008462999830953777
+		
+		Learning rate for epoch 67 is 0.0008462999830953777
+		
+		Learning rate for epoch 68 is 0.0008462999830953777
+		
+		Learning rate for epoch 69 is 0.0008462999830953777
+		
+		Learning rate for epoch 70 is 0.0008462999830953777
+		
+		Learning rate for epoch 71 is 0.0008462999830953777
+		
+		Learning rate for epoch 72 is 0.0008462999830953777
+		
+		Learning rate for epoch 73 is 0.0008462999830953777
+		
+		Learning rate for epoch 74 is 0.0008462999830953777
+		
+		Learning rate for epoch 75 is 0.0008462999830953777
+		
+		Learning rate for epoch 76 is 0.0008462999830953777
+		               loss  ParametricCrossEntropyLoss  ...  val_CRPS        lr
+		epoch-1                                          ...                    
+		0        752.800171                    0.362035  ...  1.049025  0.002012
+		1        261.433655                    0.320190  ...  1.027133  0.002012
+		2         97.943634                    0.320580  ...  1.013955  0.002012
+		3         43.009926                    0.310994  ...  1.020577  0.002012
+		4         22.043079                    0.294876  ...  1.018276  0.002012
+		...             ...                         ...  ...       ...       ...
+		71         0.809532                    0.167797  ...  0.778719  0.000846
+		72         0.804861                    0.168016  ...  0.783055  0.000846
+		73         0.802160                    0.169885  ...  0.775331  0.000846
+		74         0.803555                    0.166105  ...  0.775779  0.000846
+		75         0.801006                    0.166178  ...  0.784899  0.000846
+		
+		[76 rows x 9 columns]
+		score = 0.1082172617316246
+	train_model: completed in 1 min 16.6 s
+	RAM memory: 3.221e+10
 	=============
 	fold 3 (4/5)
 	=============
 	k_fold_cross_val_split:
-	k_fold_cross_val_split: completed in 0.5 s
+	k_fold_cross_val_split: completed in 0.1 s
 	normalize_X:
 		0.0000\% of the data have non zero std below 1e-4
-		saving to: ./R0/fold_3/X_mean.npy and ./R0/fold_3/X_std.npy
-	normalize_X: completed in 2.1 s
+		saving to: ./R4--reg_c__1--regularization__gradient/fold_3/X_mean.npy and ./R4--reg_c__1--regularization__gradient/fold_3/X_std.npy
+	normalize_X: completed in 0.9 s
 	normalize_X:
-		loading from: ./R0/fold_3/X_mean.npy and ./R0/fold_3/X_std.npy
-	normalize_X: completed in 0.2 s
+		loading from: ./R4--reg_c__1--regularization__gradient/fold_3/X_mean.npy and ./R4--reg_c__1--regularization__gradient/fold_3/X_std.npy
+	normalize_X: completed in 0.1 s
 	after normalization: X_tr.shape = (5056, 95, 288, 2), X_va.shape = (1264, 95, 288, 2), Y_tr.shape = (5056,), Y_va.shape = (1264,)
 	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
 	margin_removal_with_sliding_window:
@@ -410,105 +649,233 @@ k_fold_cross_val:
 	margin_removal_with_sliding_window: completed in 0.0 s
 	After margin removal: X_tr.shape = (5056, 95, 288, 2), X_va.shape = (1264, 95, 288, 2), Y_tr.shape = (5056,), Y_va.shape = (1264,)
 	number of training data: 5056 of which 4759.907159803726 negative and 296.09284019627347 positive
-	args = [3, 2, False, 'relu', False, False, 6e-05, 'valid']
-	convolutional args = [[3, 3, 3, 3], [2, 2, 2, 2], [False, False, False, False], ['relu', 'relu', 'relu', 'relu'], [False, False, False, False], [False, False, False, False], [6e-05, 6e-05, 6e-05, 6e-05], ['valid', 'valid', 'valid', 'valid']]
-	dense args = [['relu', 'relu', None], [False, False, False], [0.00717, 0.00717, 0.00717], [None, None, None]]
+	dense args = [['relu', 'relu', None], [False, False, False], [0.00426, 0.00426, 0.00426]]
 	
-	Model: "sequential"
+	Model: "sequential_1"
 	_________________________________________________________________
 	 Layer (type)                Output Shape              Param #   
 	=================================================================
-	 model (Functional)          (None, 2)                 1641698   
+	 sequential (Sequential)     (None, 2)                 55058     
 	                                                                 
 	 Sigma_Activation (Sigma_Act  (None, 2)                0         
 	 ivation)                                                        
 	                                                                 
 	=================================================================
-	Total params: 1,641,698
-	Trainable params: 1,641,698
+	Total params: 55,058
+	Trainable params: 55,058
 	Non-trainable params: 0
 	_________________________________________________________________
 	
 	Using CRPS loss
 	train_model:
-		scheduler_kwargs = {'lr': 1.59e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		scheduler_kwargs = {'lr': 0.0020116, 'epoch_tol': 7, 'warmup': False, 'lr_min': 0.0008463, 'decay': 0.05153}
 		Converting training data to tensors
 		Converting validation data to tensors
 		Training the network on 5056 datapoint and validating on 1264
 		
-		Learning rate for epoch 1 is 1.5899999198154546e-05
+		Learning rate for epoch 1 is 0.002011599950492382
 		
-		Learning rate for epoch 2 is 1.5899999198154546e-05
+		Learning rate for epoch 2 is 0.002011599950492382
 		
-		Learning rate for epoch 3 is 1.5899999198154546e-05
+		Learning rate for epoch 3 is 0.002011599950492382
 		
-		Learning rate for epoch 4 is 1.5899999198154546e-05
+		Learning rate for epoch 4 is 0.002011599950492382
 		
-		Learning rate for epoch 5 is 1.5899999198154546e-05
+		Learning rate for epoch 5 is 0.002011599950492382
 		
-		Learning rate for epoch 6 is 1.5899999198154546e-05
+		Learning rate for epoch 6 is 0.002011599950492382
 		
-		Learning rate for epoch 7 is 1.5899999198154546e-05
+		Learning rate for epoch 7 is 0.002011599950492382
 		
-		Learning rate for epoch 8 is 1.5899999198154546e-05
+		Learning rate for epoch 8 is 0.0019105675164610147
 		
-		Learning rate for epoch 9 is 1.5899999198154546e-05
+		Learning rate for epoch 9 is 0.0018146097427234054
 		
-		Learning rate for epoch 10 is 1.5899999198154546e-05
+		Learning rate for epoch 10 is 0.0017234712140634656
 		
-		Learning rate for epoch 11 is 1.5899999198154546e-05
+		Learning rate for epoch 11 is 0.0016369102522730827
 		
-		Learning rate for epoch 12 is 1.5899999198154546e-05
+		Learning rate for epoch 12 is 0.0015546964714303613
 		
-		Learning rate for epoch 13 is 1.5899999198154546e-05
+		Learning rate for epoch 13 is 0.0014766122912988067
 		
-		Learning rate for epoch 14 is 1.5899999198154546e-05
+		Learning rate for epoch 14 is 0.0014024494448676705
 		
-		Learning rate for epoch 15 is 1.5899999198154546e-05
+		Learning rate for epoch 15 is 0.0013320116559043527
 		
-		Learning rate for epoch 16 is 1.5899999198154546e-05
+		Learning rate for epoch 16 is 0.0012651117285713553
 		
-		Learning rate for epoch 17 is 1.5899999198154546e-05
+		Learning rate for epoch 17 is 0.0012015716638416052
 		
-		Learning rate for epoch 18 is 1.5899999198154546e-05
+		Learning rate for epoch 18 is 0.0011412228923290968
 		
-		Learning rate for epoch 19 is 1.5899999198154546e-05
+		Learning rate for epoch 19 is 0.0010839051101356745
 		
-		Learning rate for epoch 20 is 1.5899999198154546e-05
+		Learning rate for epoch 20 is 0.0010294661624357104
 		
-		Learning rate for epoch 21 is 1.5899999198154546e-05
+		Learning rate for epoch 21 is 0.0009777614613994956
 		
-		Learning rate for epoch 22 is 1.5899999198154546e-05
+		Learning rate for epoch 22 is 0.0009286535205319524
 		
-		Learning rate for epoch 23 is 1.5899999198154546e-05
-		             loss  ParametricCrossEntropyLoss  ProbRegLoss      CRPS  val_loss  val_ParametricCrossEntropyLoss  val_ProbRegLoss  val_CRPS        lr
-		epoch-1                                                                                                                                            
-		0        3.550242                    0.626014     4.789762  1.133344  3.579854                        0.427316         3.754772  1.218486  0.000016
-		1        3.331655                    0.288924     2.417806  1.027855  3.350623                        0.221240         2.313026  1.097493  0.000016
-		2        3.160216                    0.224408     2.070121  0.959572  3.177902                        0.215935         2.189951  1.023385  0.000016
-		3        2.987430                    0.206857     1.886490  0.877174  3.014417                        0.206488         2.059834  0.945596  0.000016
-		4        2.838212                    0.191704     1.721227  0.811338  2.906540                        0.202261         2.071529  0.909908  0.000016
-		5        2.725434                    0.175208     1.582923  0.760889  2.806360                        0.180368         1.880601  0.869976  0.000016
-		6        2.643469                    0.171723     1.518657  0.737558  2.759592                        0.192574         2.001051  0.875230  0.000016
-		7        2.578243                    0.164730     1.474053  0.721173  2.705282                        0.189470         1.970660  0.867124  0.000016
-		8        2.518282                    0.160443     1.414703  0.703658  2.662804                        0.191888         1.993729  0.866483  0.000016
-		9        2.466415                    0.157797     1.382616  0.692626  2.631304                        0.196073         2.062032  0.873291  0.000016
-		10       2.412858                    0.155257     1.333524  0.676405  2.590688                        0.197262         2.126663  0.868131  0.000016
-		11       2.371767                    0.153494     1.305775  0.669240  2.568221                        0.202222         2.293632  0.878214  0.000016
-		12       2.325907                    0.149966     1.259411  0.655179  2.534728                        0.173621         2.015362  0.875232  0.000016
-		13       2.290379                    0.149832     1.238661  0.647729  2.503472                        0.202962         2.160148  0.871144  0.000016
-		14       2.246827                    0.144456     1.175997  0.629638  2.481115                        0.186930         2.168854  0.874159  0.000016
-		15       2.210444                    0.142712     1.130525  0.618756  2.469117                        0.216801         2.486907  0.885507  0.000016
-		16       2.175756                    0.140940     1.099202  0.607544  2.447942                        0.230122         2.589691  0.886051  0.000016
-		17       2.144316                    0.137632     1.045677  0.594937  2.416617                        0.205350         2.361198  0.874759  0.000016
-		18       2.107796                    0.137144     0.987058  0.579022  2.412027                        0.213371         2.640754  0.888586  0.000016
-		19       2.071627                    0.132418     0.918265  0.560832  2.391273                        0.213582         2.624997  0.885040  0.000016
-		20       2.037132                    0.132148     0.862818  0.542734  2.403986                        0.270152         3.422999  0.913931  0.000016
-		21       2.004747                    0.134001     0.802495  0.526512  2.401582                        0.278597         4.654649  0.926605  0.000016
-		22       1.976121                    0.128434     0.754835  0.511687  2.397564                        0.320889         4.560689  0.936403  0.000016
-		score = 0.1736210286617279
-	train_model: completed in 1 min 3.3 s
-	RAM memory: 2.148e+10
+		Learning rate for epoch 23 is 0.0008820120128802955
+		
+		Learning rate for epoch 24 is 0.0008462999830953777
+		
+		Learning rate for epoch 25 is 0.0008462999830953777
+		
+		Learning rate for epoch 26 is 0.0008462999830953777
+		
+		Learning rate for epoch 27 is 0.0008462999830953777
+		
+		Learning rate for epoch 28 is 0.0008462999830953777
+		
+		Learning rate for epoch 29 is 0.0008462999830953777
+		
+		Learning rate for epoch 30 is 0.0008462999830953777
+		
+		Learning rate for epoch 31 is 0.0008462999830953777
+		
+		Learning rate for epoch 32 is 0.0008462999830953777
+		
+		Learning rate for epoch 33 is 0.0008462999830953777
+		
+		Learning rate for epoch 34 is 0.0008462999830953777
+		
+		Learning rate for epoch 35 is 0.0008462999830953777
+		
+		Learning rate for epoch 36 is 0.0008462999830953777
+		
+		Learning rate for epoch 37 is 0.0008462999830953777
+		
+		Learning rate for epoch 38 is 0.0008462999830953777
+		
+		Learning rate for epoch 39 is 0.0008462999830953777
+		
+		Learning rate for epoch 40 is 0.0008462999830953777
+		
+		Learning rate for epoch 41 is 0.0008462999830953777
+		
+		Learning rate for epoch 42 is 0.0008462999830953777
+		
+		Learning rate for epoch 43 is 0.0008462999830953777
+		
+		Learning rate for epoch 44 is 0.0008462999830953777
+		
+		Learning rate for epoch 45 is 0.0008462999830953777
+		
+		Learning rate for epoch 46 is 0.0008462999830953777
+		
+		Learning rate for epoch 47 is 0.0008462999830953777
+		
+		Learning rate for epoch 48 is 0.0008462999830953777
+		
+		Learning rate for epoch 49 is 0.0008462999830953777
+		
+		Learning rate for epoch 50 is 0.0008462999830953777
+		
+		Learning rate for epoch 51 is 0.0008462999830953777
+		
+		Learning rate for epoch 52 is 0.0008462999830953777
+		
+		Learning rate for epoch 53 is 0.0008462999830953777
+		
+		Learning rate for epoch 54 is 0.0008462999830953777
+		
+		Learning rate for epoch 55 is 0.0008462999830953777
+		
+		Learning rate for epoch 56 is 0.0008462999830953777
+		
+		Learning rate for epoch 57 is 0.0008462999830953777
+		
+		Learning rate for epoch 58 is 0.0008462999830953777
+		
+		Learning rate for epoch 59 is 0.0008462999830953777
+		
+		Learning rate for epoch 60 is 0.0008462999830953777
+		
+		Learning rate for epoch 61 is 0.0008462999830953777
+		
+		Learning rate for epoch 62 is 0.0008462999830953777
+		
+		Learning rate for epoch 63 is 0.0008462999830953777
+		
+		Learning rate for epoch 64 is 0.0008462999830953777
+		
+		Learning rate for epoch 65 is 0.0008462999830953777
+		
+		Learning rate for epoch 66 is 0.0008462999830953777
+		
+		Learning rate for epoch 67 is 0.0008462999830953777
+		
+		Learning rate for epoch 68 is 0.0008462999830953777
+		
+		Learning rate for epoch 69 is 0.0008462999830953777
+		
+		Learning rate for epoch 70 is 0.0008462999830953777
+		
+		Learning rate for epoch 71 is 0.0008462999830953777
+		
+		Learning rate for epoch 72 is 0.0008462999830953777
+		
+		Learning rate for epoch 73 is 0.0008462999830953777
+		
+		Learning rate for epoch 74 is 0.0008462999830953777
+		
+		Learning rate for epoch 75 is 0.0008462999830953777
+		
+		Learning rate for epoch 76 is 0.0008462999830953777
+		
+		Learning rate for epoch 77 is 0.0008462999830953777
+		
+		Learning rate for epoch 78 is 0.0008462999830953777
+		
+		Learning rate for epoch 79 is 0.0008462999830953777
+		
+		Learning rate for epoch 80 is 0.0008462999830953777
+		
+		Learning rate for epoch 81 is 0.0008462999830953777
+		
+		Learning rate for epoch 82 is 0.0008462999830953777
+		
+		Learning rate for epoch 83 is 0.0008462999830953777
+		
+		Learning rate for epoch 84 is 0.0008462999830953777
+		
+		Learning rate for epoch 85 is 0.0008462999830953777
+		
+		Learning rate for epoch 86 is 0.0008462999830953777
+		
+		Learning rate for epoch 87 is 0.0008462999830953777
+		
+		Learning rate for epoch 88 is 0.0008462999830953777
+		
+		Learning rate for epoch 89 is 0.0008462999830953777
+		
+		Learning rate for epoch 90 is 0.0008462999830953777
+		
+		Learning rate for epoch 91 is 0.0008462999830953777
+		
+		Learning rate for epoch 92 is 0.0008462999830953777
+		
+		Learning rate for epoch 93 is 0.0008462999830953777
+		               loss  ParametricCrossEntropyLoss  ...  val_CRPS        lr
+		epoch-1                                          ...                    
+		0        734.666260                    0.975086  ...  1.419750  0.002012
+		1        254.566055                    0.912123  ...  1.276875  0.002012
+		2         95.023209                    0.627993  ...  1.157170  0.002012
+		3         41.469757                    0.357291  ...  1.142555  0.002012
+		4         21.069063                    0.326193  ...  1.129423  0.002012
+		...             ...                         ...  ...       ...       ...
+		88         0.786915                    0.158014  ...  0.809594  0.000846
+		89         0.784043                    0.156627  ...  0.808468  0.000846
+		90         0.783233                    0.158256  ...  0.818563  0.000846
+		91         0.783682                    0.156252  ...  0.813333  0.000846
+		92         0.784568                    0.157231  ...  0.803016  0.000846
+		
+		[93 rows x 9 columns]
+		score = 0.13993783295154572
+	train_model: completed in 1 min 37.0 s
+	RAM memory: 3.238e+10
 	=============
 	fold 4 (5/5)
 	=============
@@ -516,11 +883,11 @@ k_fold_cross_val:
 	k_fold_cross_val_split: completed in 0.1 s
 	normalize_X:
 		0.0000\% of the data have non zero std below 1e-4
-		saving to: ./R0/fold_4/X_mean.npy and ./R0/fold_4/X_std.npy
-	normalize_X: completed in 2.0 s
+		saving to: ./R4--reg_c__1--regularization__gradient/fold_4/X_mean.npy and ./R4--reg_c__1--regularization__gradient/fold_4/X_std.npy
+	normalize_X: completed in 1.1 s
 	normalize_X:
-		loading from: ./R0/fold_4/X_mean.npy and ./R0/fold_4/X_std.npy
-	normalize_X: completed in 0.2 s
+		loading from: ./R4--reg_c__1--regularization__gradient/fold_4/X_mean.npy and ./R4--reg_c__1--regularization__gradient/fold_4/X_std.npy
+	normalize_X: completed in 0.1 s
 	after normalization: X_tr.shape = (5056, 95, 288, 2), X_va.shape = (1264, 95, 288, 2), Y_tr.shape = (5056,), Y_va.shape = (1264,)
 	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
 	margin_removal_with_sliding_window:
@@ -533,87 +900,199 @@ k_fold_cross_val:
 	margin_removal_with_sliding_window: completed in 0.0 s
 	After margin removal: X_tr.shape = (5056, 95, 288, 2), X_va.shape = (1264, 95, 288, 2), Y_tr.shape = (5056,), Y_va.shape = (1264,)
 	number of training data: 5056 of which 4870.109394350927 negative and 185.89060564907294 positive
-	args = [3, 2, False, 'relu', False, False, 6e-05, 'valid']
-	convolutional args = [[3, 3, 3, 3], [2, 2, 2, 2], [False, False, False, False], ['relu', 'relu', 'relu', 'relu'], [False, False, False, False], [False, False, False, False], [6e-05, 6e-05, 6e-05, 6e-05], ['valid', 'valid', 'valid', 'valid']]
-	dense args = [['relu', 'relu', None], [False, False, False], [0.00717, 0.00717, 0.00717], [None, None, None]]
+	dense args = [['relu', 'relu', None], [False, False, False], [0.00426, 0.00426, 0.00426]]
 	
-	Model: "sequential"
+	Model: "sequential_1"
 	_________________________________________________________________
 	 Layer (type)                Output Shape              Param #   
 	=================================================================
-	 model (Functional)          (None, 2)                 1641698   
+	 sequential (Sequential)     (None, 2)                 55058     
 	                                                                 
 	 Sigma_Activation (Sigma_Act  (None, 2)                0         
 	 ivation)                                                        
 	                                                                 
 	=================================================================
-	Total params: 1,641,698
-	Trainable params: 1,641,698
+	Total params: 55,058
+	Trainable params: 55,058
 	Non-trainable params: 0
 	_________________________________________________________________
 	
 	Using CRPS loss
 	train_model:
-		scheduler_kwargs = {'lr': 1.59e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		scheduler_kwargs = {'lr': 0.0020116, 'epoch_tol': 7, 'warmup': False, 'lr_min': 0.0008463, 'decay': 0.05153}
 		Converting training data to tensors
 		Converting validation data to tensors
 		Training the network on 5056 datapoint and validating on 1264
 		
-		Learning rate for epoch 1 is 1.5899999198154546e-05
+		Learning rate for epoch 1 is 0.002011599950492382
 		
-		Learning rate for epoch 2 is 1.5899999198154546e-05
+		Learning rate for epoch 2 is 0.002011599950492382
 		
-		Learning rate for epoch 3 is 1.5899999198154546e-05
+		Learning rate for epoch 3 is 0.002011599950492382
 		
-		Learning rate for epoch 4 is 1.5899999198154546e-05
+		Learning rate for epoch 4 is 0.002011599950492382
 		
-		Learning rate for epoch 5 is 1.5899999198154546e-05
+		Learning rate for epoch 5 is 0.002011599950492382
 		
-		Learning rate for epoch 6 is 1.5899999198154546e-05
+		Learning rate for epoch 6 is 0.002011599950492382
 		
-		Learning rate for epoch 7 is 1.5899999198154546e-05
+		Learning rate for epoch 7 is 0.002011599950492382
 		
-		Learning rate for epoch 8 is 1.5899999198154546e-05
+		Learning rate for epoch 8 is 0.0019105675164610147
 		
-		Learning rate for epoch 9 is 1.5899999198154546e-05
+		Learning rate for epoch 9 is 0.0018146097427234054
 		
-		Learning rate for epoch 10 is 1.5899999198154546e-05
+		Learning rate for epoch 10 is 0.0017234712140634656
 		
-		Learning rate for epoch 11 is 1.5899999198154546e-05
+		Learning rate for epoch 11 is 0.0016369102522730827
 		
-		Learning rate for epoch 12 is 1.5899999198154546e-05
+		Learning rate for epoch 12 is 0.0015546964714303613
 		
-		Learning rate for epoch 13 is 1.5899999198154546e-05
+		Learning rate for epoch 13 is 0.0014766122912988067
 		
-		Learning rate for epoch 14 is 1.5899999198154546e-05
+		Learning rate for epoch 14 is 0.0014024494448676705
 		
-		Learning rate for epoch 15 is 1.5899999198154546e-05
-		             loss  ParametricCrossEntropyLoss  ProbRegLoss      CRPS  val_loss  val_ParametricCrossEntropyLoss  val_ProbRegLoss  val_CRPS        lr
-		epoch-1                                                                                                                                            
-		0        3.572047                    0.517138     4.554975  1.156962  3.428225                        0.309573         2.561435  1.064630  0.000016
-		1        3.342242                    0.234328     2.270559  1.033966  3.231039                        0.222593         2.075167  0.974492  0.000016
-		2        3.177119                    0.210251     2.086428  0.972257  3.064302                        0.219910         1.939138  0.905501  0.000016
-		3        3.013541                    0.195100     1.931791  0.899583  2.920341                        0.220170         1.823698  0.847869  0.000016
-		4        2.878608                    0.185671     1.803987  0.848313  2.821229                        0.218054         1.780983  0.824095  0.000016
-		5        2.769580                    0.172714     1.695319  0.807918  2.749251                        0.223523         1.775015  0.818498  0.000016
-		6        2.679162                    0.163657     1.615375  0.780221  2.669363                        0.241585         1.778817  0.796016  0.000016
-		7        2.598738                    0.156066     1.537362  0.752847  2.612481                        0.264006         1.884677  0.789963  0.000016
-		8        2.527485                    0.148332     1.469264  0.731573  2.561310                        0.249081         1.798280  0.784778  0.000016
-		9        2.468121                    0.144346     1.426867  0.715041  2.557258                        0.250382         1.933976  0.821135  0.000016
-		10       2.414553                    0.138201     1.365966  0.697440  2.482033                        0.262591         1.933837  0.781105  0.000016
-		11       2.367436                    0.138910     1.329269  0.687381  2.445378                        0.250674         1.872681  0.777229  0.000016
-		12       2.317930                    0.132581     1.276811  0.669923  2.428728                        0.255265         2.027482  0.790230  0.000016
-		13       2.274240                    0.127874     1.218168  0.652770  2.394431                        0.268526         2.123494  0.782900  0.000016
-		14       2.231525                    0.124715     1.161685  0.636168  2.366917                        0.254991         1.985853  0.780934  0.000016
-		score = 0.2180541455745697
-	train_model: completed in 40.5 s
-	RAM memory: 2.196e+10
+		Learning rate for epoch 15 is 0.0013320116559043527
+		
+		Learning rate for epoch 16 is 0.0012651117285713553
+		
+		Learning rate for epoch 17 is 0.0012015716638416052
+		
+		Learning rate for epoch 18 is 0.0011412228923290968
+		
+		Learning rate for epoch 19 is 0.0010839051101356745
+		
+		Learning rate for epoch 20 is 0.0010294661624357104
+		
+		Learning rate for epoch 21 is 0.0009777614613994956
+		
+		Learning rate for epoch 22 is 0.0009286535205319524
+		
+		Learning rate for epoch 23 is 0.0008820120128802955
+		
+		Learning rate for epoch 24 is 0.0008462999830953777
+		
+		Learning rate for epoch 25 is 0.0008462999830953777
+		
+		Learning rate for epoch 26 is 0.0008462999830953777
+		
+		Learning rate for epoch 27 is 0.0008462999830953777
+		
+		Learning rate for epoch 28 is 0.0008462999830953777
+		
+		Learning rate for epoch 29 is 0.0008462999830953777
+		
+		Learning rate for epoch 30 is 0.0008462999830953777
+		
+		Learning rate for epoch 31 is 0.0008462999830953777
+		
+		Learning rate for epoch 32 is 0.0008462999830953777
+		
+		Learning rate for epoch 33 is 0.0008462999830953777
+		
+		Learning rate for epoch 34 is 0.0008462999830953777
+		
+		Learning rate for epoch 35 is 0.0008462999830953777
+		
+		Learning rate for epoch 36 is 0.0008462999830953777
+		
+		Learning rate for epoch 37 is 0.0008462999830953777
+		
+		Learning rate for epoch 38 is 0.0008462999830953777
+		
+		Learning rate for epoch 39 is 0.0008462999830953777
+		
+		Learning rate for epoch 40 is 0.0008462999830953777
+		
+		Learning rate for epoch 41 is 0.0008462999830953777
+		
+		Learning rate for epoch 42 is 0.0008462999830953777
+		
+		Learning rate for epoch 43 is 0.0008462999830953777
+		
+		Learning rate for epoch 44 is 0.0008462999830953777
+		
+		Learning rate for epoch 45 is 0.0008462999830953777
+		
+		Learning rate for epoch 46 is 0.0008462999830953777
+		
+		Learning rate for epoch 47 is 0.0008462999830953777
+		
+		Learning rate for epoch 48 is 0.0008462999830953777
+		
+		Learning rate for epoch 49 is 0.0008462999830953777
+		
+		Learning rate for epoch 50 is 0.0008462999830953777
+		
+		Learning rate for epoch 51 is 0.0008462999830953777
+		
+		Learning rate for epoch 52 is 0.0008462999830953777
+		
+		Learning rate for epoch 53 is 0.0008462999830953777
+		
+		Learning rate for epoch 54 is 0.0008462999830953777
+		
+		Learning rate for epoch 55 is 0.0008462999830953777
+		
+		Learning rate for epoch 56 is 0.0008462999830953777
+		
+		Learning rate for epoch 57 is 0.0008462999830953777
+		
+		Learning rate for epoch 58 is 0.0008462999830953777
+		
+		Learning rate for epoch 59 is 0.0008462999830953777
+		
+		Learning rate for epoch 60 is 0.0008462999830953777
+		
+		Learning rate for epoch 61 is 0.0008462999830953777
+		
+		Learning rate for epoch 62 is 0.0008462999830953777
+		
+		Learning rate for epoch 63 is 0.0008462999830953777
+		
+		Learning rate for epoch 64 is 0.0008462999830953777
+		
+		Learning rate for epoch 65 is 0.0008462999830953777
+		
+		Learning rate for epoch 66 is 0.0008462999830953777
+		
+		Learning rate for epoch 67 is 0.0008462999830953777
+		
+		Learning rate for epoch 68 is 0.0008462999830953777
+		
+		Learning rate for epoch 69 is 0.0008462999830953777
+		
+		Learning rate for epoch 70 is 0.0008462999830953777
+		
+		Learning rate for epoch 71 is 0.0008462999830953777
+		
+		Learning rate for epoch 72 is 0.0008462999830953777
+		
+		Learning rate for epoch 73 is 0.0008462999830953777
+		               loss  ParametricCrossEntropyLoss  ...  val_CRPS        lr
+		epoch-1                                          ...                    
+		0        734.705688                    0.439570  ...  1.042586  0.002012
+		1        253.573380                    0.350318  ...  1.035599  0.002012
+		2         94.463478                    0.341400  ...  1.010816  0.002012
+		3         41.153385                    0.340336  ...  1.011253  0.002012
+		4         20.885935                    0.309246  ...  1.007056  0.002012
+		...             ...                         ...  ...       ...       ...
+		68         0.830163                    0.147930  ...  0.706387  0.000846
+		69         0.831098                    0.148067  ...  0.701775  0.000846
+		70         0.827762                    0.148076  ...  0.702107  0.000846
+		71         0.826705                    0.147443  ...  0.704216  0.000846
+		72         0.827040                    0.149039  ...  0.699808  0.000846
+		
+		[73 rows x 9 columns]
+		score = 0.18740376830101013
+	train_model: completed in 1 min 20.3 s
+	RAM memory: 3.248e+10
 	
 	Final scores:
-		fold 0: 0.1761254072189331
-		fold 1: 0.19206613302230835
-		fold 2: 0.1438039392232895
-		fold 3: 0.1736210286617279
-		fold 4: 0.2180541455745697
-	Average score: 0.181+/-0.024
-k_fold_cross_val: completed in 4 min 47.5 s
+		fold 0: 0.1466471552848816
+		fold 1: 0.14995507895946503
+		fold 2: 0.1082172617316246
+		fold 3: 0.13993783295154572
+		fold 4: 0.18740376830101013
+	Average score: 0.146+/-0.025
+k_fold_cross_val: completed in 7 min 10.3 s
