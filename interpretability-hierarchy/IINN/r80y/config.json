@@ -1,0 +1,158 @@
+{
+    "run_kwargs": {
+        "log_level": 20,
+        "load_data_kwargs": {
+            "dataset_years": 1000,
+            "year_list": "range(80)",
+            "sampling": "",
+            "Model": "CESM",
+            "area": "France-xarray",
+            "filter_area": "France-xarray",
+            "lon_start": -144,
+            "lon_end": 144,
+            "lat_start": 96,
+            "lat_end": 191,
+            "fillna": 0,
+            "mylocal": [
+                "/local/gmiloshe/CESM/",
+                "/ClimateDynamics/MediumSpace/ClimateLearningFR/gmiloshe/CESM"
+            ],
+            "lsmsource": null,
+            "areasource": null,
+            "lsm2mask": false,
+            "fields": [
+                "zg500",
+                "mrso_filtered"
+            ],
+            "preprefix": "North_Anomalies_",
+            "datafolder": null,
+            "area_integral_override": {
+                "zg500": "/ClimateDynamics/MediumSpace/ClimateLearningFR/alovo/CESM/ANO_t2m_France.nc"
+            }
+        },
+        "prepare_XY_kwargs": {
+            "do_premix": false,
+            "premix_seed": 0,
+            "do_balance_folds": true,
+            "nfolds": 5,
+            "year_permutation": null,
+            "flatten_time_axis": true,
+            "return_time_series": false,
+            "make_XY_kwargs": {
+                "label_field": "zg500",
+                "time_start": 31,
+                "time_end": 123,
+                "T": 14,
+                "tau": 0,
+                "percent": null,
+                "threshold": 3.113502457203933,
+                "label_period_start": null,
+                "label_period_end": null,
+                "A_weights": null,
+                "return_threshold": true
+            },
+            "roll_X_kwargs": {
+                "roll_axis": "lon",
+                "roll_steps": 0
+            }
+        },
+        "k_fold_cross_val_kwargs": {
+            "load_from": null,
+            "ignorable_keys": null,
+            "nfolds": 5,
+            "val_folds": 1,
+            "u": 1,
+            "normalization_mode": "pointwise",
+            "fullmetrics": true,
+            "training_epochs": 100,
+            "training_epochs_tl": 10,
+            "loss": "crps",
+            "prune_threshold": null,
+            "min_folds_before_pruning": null,
+            "Z_DIM": null,
+            "T": 14,
+            "time_start": 31,
+            "time_end": 123,
+            "label_period_start": null,
+            "label_period_end": null,
+            "create_model_kwargs": {
+                "sigma_activation": "softplus",
+                "min_sigma": null,
+                "create_core_model_kwargs": {
+                    "conv_channels": [
+                        32,
+                        64,
+                        128,
+                        128
+                    ],
+                    "kernel_sizes": 3,
+                    "strides": 2,
+                    "padding": "valid",
+                    "batch_normalizations": false,
+                    "conv_activations": "relu",
+                    "conv_dropouts": false,
+                    "max_pool_sizes": false,
+                    "conv_l2coef": 6e-05,
+                    "conv_skip": null,
+                    "rnn_units": null,
+                    "rnn_type": "LSTM",
+                    "rnn_activations": null,
+                    "rnn_dropouts": false,
+                    "rnn_l2coef": null,
+                    "rnn_batch_norm": null,
+                    "rnn_return_sequences": false,
+                    "dense_units": [
+                        128,
+                        64,
+                        2
+                    ],
+                    "dense_activations": [
+                        "relu",
+                        "relu",
+                        null
+                    ],
+                    "dense_dropouts": false,
+                    "dense_l2coef": 0.00717,
+                    "dense_batch_norm": null
+                }
+            },
+            "train_model_kwargs": {
+                "enable_early_stopping": true,
+                "u": 1,
+                "batch_size": 128,
+                "checkpoint_every": 1,
+                "additional_callbacks": [
+                    "csv_logger"
+                ],
+                "return_metric": "val_ParametricCrossEntropyLoss",
+                "trainable_layers": null,
+                "early_stopping_kwargs": {
+                    "monitor": "val_ParametricCrossEntropyLoss",
+                    "min_delta": 0,
+                    "patience": 10,
+                    "mode": "auto"
+                },
+                "scheduler_kwargs": {
+                    "lr": 1.59e-05,
+                    "epoch_tol": null,
+                    "warmup": false,
+                    "lr_min": 0.0005,
+                    "decay": 0.1
+                }
+            },
+            "optimal_checkpoint_kwargs": {
+                "metric": "val_ParametricCrossEntropyLoss",
+                "direction": "minimize",
+                "first_epoch": 1,
+                "collective": false,
+                "fold_subfolder": null
+            }
+        }
+    },
+    "telegram_kwargs": {
+        "telegram_bot_token": null,
+        "chat_ID": null,
+        "telegram_logging_level": 45,
+        "telegram_logging_format": null
+    }
+}

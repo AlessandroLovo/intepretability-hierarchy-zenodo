@@ -1,0 +1,160 @@
+run_id = '14'
+
+Running on machine: apollo2048g
+
+Non default parameters:
+{
+    "reg_c": 1000.0
+}
+No transfer learning
+
+
+
+
+k_fold_cross_val:
+	Models will be trained from scratch
+	geosep.reshape_mask.shape = (95, 288, 2), np.sum(geosep.reshape_mask) = 27424
+	X.shape = (6320, 95, 288, 2), reshaping
+	X.shape = (6320, 27424)
+	Setting engine as GPU
+	Failed to use GPU, using CPU instead
+	Setting engine as CPU
+	=============
+	fold 0 (1/5)
+	=============
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 0.2 s
+	number of training data: 5056 of which 4746 negative and 310 positive
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R14--reg_c__1000.0/fold_0/X_mean.npy and ./R14--reg_c__1000.0/fold_0/X_std.npy
+	normalize_X: completed in 1.2 s
+	normalize_X:
+		loading from: ./R14--reg_c__1000.0/fold_0/X_mean.npy and ./R14--reg_c__1000.0/fold_0/X_std.npy
+	normalize_X: completed in 0.1 s
+	after normalization: X_tr.shape = (5056, 27424), X_va.shape = (1264, 27424), Y_tr.shape = (5056,), Y_va.shape = (1264,)
+	train_model:
+		Training the network on 5056 datapoint and validating on 1264
+		XAs.shape = (5056, 27425)
+		XAs_cov.shape = (27425, 27425)
+		self.p.shape = (27424,)
+		fA_cov.shape = (2, 2)
+		         CrossEntropyLoss  val_CrossEntropyLoss         r     val_r
+		epoch-1                                                            
+		0                0.158794              0.167767  0.720211  0.628123
+		score = 0.1677669414677551
+	train_model: completed in 2 min 2.2 s
+	RAM memory: 3.390e+11
+	=============
+	fold 1 (2/5)
+	=============
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 0.2 s
+	number of training data: 5056 of which 4746 negative and 310 positive
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R14--reg_c__1000.0/fold_1/X_mean.npy and ./R14--reg_c__1000.0/fold_1/X_std.npy
+	normalize_X: completed in 0.9 s
+	normalize_X:
+		loading from: ./R14--reg_c__1000.0/fold_1/X_mean.npy and ./R14--reg_c__1000.0/fold_1/X_std.npy
+	normalize_X: completed in 0.1 s
+	after normalization: X_tr.shape = (5056, 27424), X_va.shape = (1264, 27424), Y_tr.shape = (5056,), Y_va.shape = (1264,)
+	train_model:
+		Training the network on 5056 datapoint and validating on 1264
+		XAs.shape = (5056, 27425)
+		XAs_cov.shape = (27425, 27425)
+		self.p.shape = (27424,)
+		fA_cov.shape = (2, 2)
+		         CrossEntropyLoss  val_CrossEntropyLoss         r     val_r
+		epoch-1                                                            
+		0                0.156706              0.179273  0.723634  0.580648
+		score = 0.17927340895664107
+	train_model: completed in 2 min 3.1 s
+	RAM memory: 3.390e+11
+	=============
+	fold 2 (3/5)
+	=============
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 0.3 s
+	number of training data: 5056 of which 4746 negative and 310 positive
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R14--reg_c__1000.0/fold_2/X_mean.npy and ./R14--reg_c__1000.0/fold_2/X_std.npy
+	normalize_X: completed in 0.9 s
+	normalize_X:
+		loading from: ./R14--reg_c__1000.0/fold_2/X_mean.npy and ./R14--reg_c__1000.0/fold_2/X_std.npy
+	normalize_X: completed in 0.1 s
+	after normalization: X_tr.shape = (5056, 27424), X_va.shape = (1264, 27424), Y_tr.shape = (5056,), Y_va.shape = (1264,)
+	train_model:
+		Training the network on 5056 datapoint and validating on 1264
+		XAs.shape = (5056, 27425)
+		XAs_cov.shape = (27425, 27425)
+		self.p.shape = (27424,)
+		fA_cov.shape = (2, 2)
+		         CrossEntropyLoss  val_CrossEntropyLoss         r     val_r
+		epoch-1                                                            
+		0                0.166282              0.136978  0.709891  0.674124
+		score = 0.1369777254723224
+	train_model: completed in 2 min 1.2 s
+	RAM memory: 3.390e+11
+	=============
+	fold 3 (4/5)
+	=============
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 0.3 s
+	number of training data: 5056 of which 4747 negative and 309 positive
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R14--reg_c__1000.0/fold_3/X_mean.npy and ./R14--reg_c__1000.0/fold_3/X_std.npy
+	normalize_X: completed in 0.9 s
+	normalize_X:
+		loading from: ./R14--reg_c__1000.0/fold_3/X_mean.npy and ./R14--reg_c__1000.0/fold_3/X_std.npy
+	normalize_X: completed in 0.1 s
+	after normalization: X_tr.shape = (5056, 27424), X_va.shape = (1264, 27424), Y_tr.shape = (5056,), Y_va.shape = (1264,)
+	train_model:
+		Training the network on 5056 datapoint and validating on 1264
+		XAs.shape = (5056, 27425)
+		XAs_cov.shape = (27425, 27425)
+		self.p.shape = (27424,)
+		fA_cov.shape = (2, 2)
+		         CrossEntropyLoss  val_CrossEntropyLoss         r    val_r
+		epoch-1                                                           
+		0                0.160111              0.180141  0.701972  0.68946
+		score = 0.1801411757857137
+	train_model: completed in 2 min 2.2 s
+	RAM memory: 3.391e+11
+	=============
+	fold 4 (5/5)
+	=============
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 0.1 s
+	number of training data: 5056 of which 4747 negative and 309 positive
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R14--reg_c__1000.0/fold_4/X_mean.npy and ./R14--reg_c__1000.0/fold_4/X_std.npy
+	normalize_X: completed in 1.2 s
+	normalize_X:
+		loading from: ./R14--reg_c__1000.0/fold_4/X_mean.npy and ./R14--reg_c__1000.0/fold_4/X_std.npy
+	normalize_X: completed in 0.1 s
+	after normalization: X_tr.shape = (5056, 27424), X_va.shape = (1264, 27424), Y_tr.shape = (5056,), Y_va.shape = (1264,)
+	train_model:
+		Training the network on 5056 datapoint and validating on 1264
+		XAs.shape = (5056, 27425)
+		XAs_cov.shape = (27425, 27425)
+		self.p.shape = (27424,)
+		fA_cov.shape = (2, 2)
+		         CrossEntropyLoss  val_CrossEntropyLoss         r     val_r
+		epoch-1                                                            
+		0                0.150837              0.209921  0.708768  0.677651
+		score = 0.2099210304980642
+	train_model: completed in 2 min 3.6 s
+	RAM memory: 3.389e+11
+	
+	Final scores:
+		fold 0: 0.1677669414677551
+		fold 1: 0.17927340895664107
+		fold 2: 0.1369777254723224
+		fold 3: 0.1801411757857137
+		fold 4: 0.2099210304980642
+	Average score: 0.175+/-0.024
+k_fold_cross_val: completed in 10 min 23.9 s
