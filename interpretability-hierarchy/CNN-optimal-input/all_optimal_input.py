@@ -10,7 +10,7 @@ default_colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
 
 import os
 import sys
-sys.path.append('../Climate-Learning')
+sys.path.append('../../Climate-Learning')
 import general_purpose.utilities as ut
 import general_purpose.uplotlib as uplt
 
@@ -47,7 +47,7 @@ def get_model(run, fold, folder, monitor=None):
     model = ln.load_model(f"{folder}/{run['name']}/fold_{fold}/cp-{opt_ckp[fold]:04d}.ckpt")
     return model
 
-lon, lat = np.load('lon.npy'), np.load('lat.npy')
+lon, lat = np.load('../common/lon.npy'), np.load('../common/lat.npy')
 
 start_time = time.time()
 
@@ -75,7 +75,7 @@ X_te = trainer.X
 A_te = trainer.Y
 
 threshold = np.load('../common/threshold.npy').item()
-A_te_ = np.load('../common/A_te.npy')
+A_te_ = xr.open_dataarray('../common/A_te.nc').data
 assert np.allclose(A_te, A_te_)
 
 ## get a model
@@ -89,8 +89,8 @@ run_folder = f"{folder}/{run['name']}"
 
 fold = 0
 
-X_mean = np.load(f'{run_folder}/fold_{fold}/X_mean.npy')
-X_std = np.load(f'{run_folder}/fold_{fold}/X_std.npy')
+X_mean = np.load(f'../common/r800y/fold_{fold}/X_mean.npy')
+X_std = np.load(f'../common/r800y/fold_{fold}/X_std.npy')
 # Y_pred_te_ = np.load(f'{run_folder}/fold_{fold}/Y_pred_te.npy')
 
 model = get_model(run, fold, folder)
