@@ -1,0 +1,582 @@
+run_id = '2'
+
+Running on machine: anchiale5
+
+Non default parameters:
+{}
+No transfer learning
+
+
+
+
+load_data:
+	Overriding area integral for field zg500
+	Filtering field mrso over France-xarray
+load_data: completed in 17 min 44.2 s
+prepare_XY:
+	make_XY:
+		time_start = 31, time_end = 123, label_period_start = None, label_period_end = None, T = 14
+		make_X:
+		make_X: completed in 3.6 s
+		assign_labels:
+			A_weights = None
+			threshold = 3.113502457203933
+		assign_labels: completed in 1.9 s
+	make_XY: completed in 5.5 s
+	roll_X:
+	roll_X: completed in 0.0 s
+	Mixing
+	 label_period_start = 31; time_start = 31; time_end = 123; label_period_end = 123 
+	Y.shape = (800, 79), from 0 to 79 
+	balance_folds:
+		Balancing folds
+		fold 0 done!
+		fold 1 done!
+		fold 2 done!
+		fold 3 done!
+		fold 4 done!
+		Sums of the balanced 5 folds:
+		[632 632 632 632 632]
+		std/avg = 0.000
+		max relative deviation = 0.000\%
+	balance_folds: completed in 0.0 s
+	Mixing completed in 20.8 s
+	
+	X.shape = (800, 79, 95, 288, 2), Y.shape = (800, 79)
+	Flattened time: X.shape = (63200, 95, 288, 2), Y.shape = (63200,)
+prepare_XY: completed in 35.9 s
+k_fold_cross_val:
+	Models will be trained from scratch
+	=============
+	fold 0 (1/5)
+	=============
+	ln.current_fold = 0
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 3.6 s
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R2/fold_0/X_mean.npy and ./R2/fold_0/X_std.npy
+	normalize_X: completed in 47.0 s
+	normalize_X:
+		loading from: ./R2/fold_0/X_mean.npy and ./R2/fold_0/X_std.npy
+	normalize_X: completed in 1.2 s
+	after normalization: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	After margin removal: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	number of training data: 50560 of which 50844.26017706788 negative and -284.2601770678839 positive
+	args = [3, 2, False, 'relu', False, False, 1e-05, 'valid']
+	convolutional args = [[3, 3, 3, 3, 3], [2, 2, 2, 2, 2], [False, False, False, False, False], ['relu', 'relu', 'relu', 'relu', 'relu'], [False, False, False, False, False], [False, False, False, False, False], [1e-05, 1e-05, 1e-05, 1e-05, 1e-05], ['valid', 'valid', 'valid', 'valid', 'valid']]
+	dense args = [['relu', None], [False, False], [0.008, 0.008], [None, None]]
+	Loading GA Perturbation from /ClimateDynamics/MediumSpace/ClimateLearningFR/alovo/CESM/GA/r1/12--reg_c__100.0/fold_0...
+	
+	Model: "perturbative_model"
+	__________________________________________________________________________________________________
+	 Layer (type)                   Output Shape         Param #     Connected to                     
+	==================================================================================================
+	 input (InputLayer)             [(None, 95, 288, 2)  0           []                               
+	                                ]                                                                 
+	                                                                                                  
+	 gaussian_model (GaussianLayer)  (None, 2)           54721       ['input[0][0]']                  
+	                                                                                                  
+	 model (Functional)             (None, 2)            650658      ['input[0][0]']                  
+	                                                                                                  
+	 add (Add)                      (None, 2)            0           ['gaussian_model[0][0]',         
+	                                                                  'model[1][0]']                  
+	                                                                                                  
+	 Sigma_Activation (Sigma_Activa  (None, 2)           0           ['add[0][0]']                    
+	 tion)                                                                                            
+	                                                                                                  
+	==================================================================================================
+	Total params: 705,379
+	Trainable params: 650,658
+	Non-trainable params: 54,721
+	__________________________________________________________________________________________________
+	
+	Using CRPS loss
+	train_model:
+		scheduler_kwargs = {'lr': 8.2e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		Converting training data to tensors
+		Converting validation data to tensors
+		Training the network on 50560 datapoint and validating on 12640
+		
+		Learning rate for epoch 1 is 8.199999865610152e-05
+		
+		Learning rate for epoch 2 is 8.199999865610152e-05
+		
+		Learning rate for epoch 3 is 8.199999865610152e-05
+		
+		Learning rate for epoch 4 is 8.199999865610152e-05
+		
+		Learning rate for epoch 5 is 8.199999865610152e-05
+		
+		Learning rate for epoch 6 is 8.199999865610152e-05
+		
+		Learning rate for epoch 7 is 8.199999865610152e-05
+		
+		Learning rate for epoch 8 is 8.199999865610152e-05
+		
+		Learning rate for epoch 9 is 8.199999865610152e-05
+		
+		Learning rate for epoch 10 is 8.199999865610152e-05
+		
+		Learning rate for epoch 11 is 8.199999865610152e-05
+		
+		Learning rate for epoch 12 is 8.199999865610152e-05
+		
+		Learning rate for epoch 13 is 8.199999865610152e-05
+		
+		Learning rate for epoch 14 is 8.199999865610152e-05
+		
+		Learning rate for epoch 15 is 8.199999865610152e-05
+		             loss  ParametricCrossEntropyLoss  ProbRegLoss      CRPS  val_loss  val_ParametricCrossEntropyLoss  val_ProbRegLoss  val_CRPS        lr
+		epoch-1                                                                                                                                            
+		0        2.035301                    0.140308     1.550325  0.744150  1.534389                        0.138663         1.546625  0.745289  0.000082
+		1        1.261486                    0.137929     1.510466  0.732048  1.077574                        0.136032         1.524327  0.735555  0.000082
+		2        0.957006                    0.134256     1.451599  0.711741  0.899917                        0.132354         1.488527  0.720529  0.000082
+		3        0.831310                    0.129456     1.378615  0.686868  0.841915                        0.133345         1.510919  0.720073  0.000082
+		4        0.767392                    0.125209     1.298240  0.660496  0.819486                        0.132188         1.523942  0.721582  0.000082
+		5        0.724042                    0.120189     1.214249  0.633377  0.819646                        0.135418         1.548714  0.731769  0.000082
+		6        0.686866                    0.115555     1.116774  0.603535  0.821882                        0.139485         1.718358  0.739205  0.000082
+		7        0.646990                    0.108228     0.995878  0.567099  0.845831                        0.150437         1.829926  0.764103  0.000082
+		8        0.610542                    0.102732     0.869565  0.531820  0.870951                        0.154447         1.978615  0.790110  0.000082
+		9        0.568277                    0.095410     0.709568  0.489685  0.882768                        0.172244         2.458652  0.801429  0.000082
+		10       0.529882                    0.087986     0.550405  0.451111  0.920359                        0.190267         3.426682  0.838677  0.000082
+		11       0.494944                    0.082990     0.394496  0.415339  0.921989                        0.194253         3.371567  0.839146  0.000082
+		12       0.459479                    0.075925     0.223867  0.379344  0.945217                        0.207761         4.080515  0.863138  0.000082
+		13       0.427307                    0.069976     0.046539  0.346556  0.982585                        0.262154         6.510140  0.898958  0.000082
+		14       0.399740                    0.063118    -0.116510  0.318628  0.992107                        0.300145         7.190316  0.907861  0.000082
+		score = 0.1321876496076584
+	train_model: completed in 3 min 1.6 s
+	RAM memory: 8.681e+10
+	=============
+	fold 1 (2/5)
+	=============
+	ln.current_fold = 1
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 2.9 s
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R2/fold_1/X_mean.npy and ./R2/fold_1/X_std.npy
+	normalize_X: completed in 32.1 s
+	normalize_X:
+		loading from: ./R2/fold_1/X_mean.npy and ./R2/fold_1/X_std.npy
+	normalize_X: completed in 1.2 s
+	after normalization: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	After margin removal: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	number of training data: 50560 of which 50776.057928270864 negative and -216.05792827086134 positive
+	args = [3, 2, False, 'relu', False, False, 1e-05, 'valid']
+	convolutional args = [[3, 3, 3, 3, 3], [2, 2, 2, 2, 2], [False, False, False, False, False], ['relu', 'relu', 'relu', 'relu', 'relu'], [False, False, False, False, False], [False, False, False, False, False], [1e-05, 1e-05, 1e-05, 1e-05, 1e-05], ['valid', 'valid', 'valid', 'valid', 'valid']]
+	dense args = [['relu', None], [False, False], [0.008, 0.008], [None, None]]
+	Loading GA Perturbation from /ClimateDynamics/MediumSpace/ClimateLearningFR/alovo/CESM/GA/r1/12--reg_c__100.0/fold_1...
+	
+	Model: "perturbative_model"
+	__________________________________________________________________________________________________
+	 Layer (type)                   Output Shape         Param #     Connected to                     
+	==================================================================================================
+	 input (InputLayer)             [(None, 95, 288, 2)  0           []                               
+	                                ]                                                                 
+	                                                                                                  
+	 gaussian_model (GaussianLayer)  (None, 2)           54721       ['input[0][0]']                  
+	                                                                                                  
+	 model (Functional)             (None, 2)            650658      ['input[0][0]']                  
+	                                                                                                  
+	 add (Add)                      (None, 2)            0           ['gaussian_model[0][0]',         
+	                                                                  'model[1][0]']                  
+	                                                                                                  
+	 Sigma_Activation (Sigma_Activa  (None, 2)           0           ['add[0][0]']                    
+	 tion)                                                                                            
+	                                                                                                  
+	==================================================================================================
+	Total params: 705,379
+	Trainable params: 650,658
+	Non-trainable params: 54,721
+	__________________________________________________________________________________________________
+	
+	Using CRPS loss
+	train_model:
+		scheduler_kwargs = {'lr': 8.2e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		Converting training data to tensors
+		Converting validation data to tensors
+		Training the network on 50560 datapoint and validating on 12640
+		
+		Learning rate for epoch 1 is 8.199999865610152e-05
+		
+		Learning rate for epoch 2 is 8.199999865610152e-05
+		
+		Learning rate for epoch 3 is 8.199999865610152e-05
+		
+		Learning rate for epoch 4 is 8.199999865610152e-05
+		
+		Learning rate for epoch 5 is 8.199999865610152e-05
+		
+		Learning rate for epoch 6 is 8.199999865610152e-05
+		
+		Learning rate for epoch 7 is 8.199999865610152e-05
+		
+		Learning rate for epoch 8 is 8.199999865610152e-05
+		
+		Learning rate for epoch 9 is 8.199999865610152e-05
+		
+		Learning rate for epoch 10 is 8.199999865610152e-05
+		
+		Learning rate for epoch 11 is 8.199999865610152e-05
+		
+		Learning rate for epoch 12 is 8.199999865610152e-05
+		
+		Learning rate for epoch 13 is 8.199999865610152e-05
+		             loss  ParametricCrossEntropyLoss  ProbRegLoss      CRPS  val_loss  val_ParametricCrossEntropyLoss  val_ProbRegLoss  val_CRPS        lr
+		epoch-1                                                                                                                                            
+		0        2.039834                    0.140761     1.552099  0.745038  1.537841                        0.137949         1.539576  0.740855  0.000082
+		1        1.268010                    0.138537     1.508602  0.731904  1.078139                        0.136727         1.513260  0.730009  0.000082
+		2        0.962340                    0.133688     1.443826  0.709316  0.910121                        0.136371         1.496298  0.723630  0.000082
+		3        0.831473                    0.128553     1.353748  0.678763  0.847214                        0.137342         1.499317  0.717885  0.000082
+		4        0.768231                    0.124007     1.272815  0.652652  0.837535                        0.147511         1.622645  0.730412  0.000082
+		5        0.722358                    0.119171     1.178591  0.622471  0.849150                        0.150767         1.665379  0.751825  0.000082
+		6        0.682758                    0.113290     1.071772  0.589944  0.850372                        0.145983         1.778535  0.758285  0.000082
+		7        0.641796                    0.106579     0.942930  0.552665  0.866838                        0.164021         2.030152  0.777253  0.000082
+		8        0.601034                    0.100045     0.799532  0.513560  0.888614                        0.173145         2.264306  0.799615  0.000082
+		9        0.561369                    0.094037     0.647510  0.474802  0.900519                        0.180073         2.609953  0.811249  0.000082
+		10       0.524699                    0.086346     0.491851  0.438231  0.914042                        0.201907         2.739732  0.825066  0.000082
+		11       0.490613                    0.081005     0.335923  0.403973  0.942659                        0.209025         3.780545  0.853863  0.000082
+		12       0.453189                    0.072826     0.155299  0.366628  0.968575                        0.231797         4.787544  0.879591  0.000082
+		score = 0.13637115061283112
+	train_model: completed in 2 min 21.7 s
+	RAM memory: 8.712e+10
+	=============
+	fold 2 (3/5)
+	=============
+	ln.current_fold = 2
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 2.9 s
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R2/fold_2/X_mean.npy and ./R2/fold_2/X_std.npy
+	normalize_X: completed in 34.8 s
+	normalize_X:
+		loading from: ./R2/fold_2/X_mean.npy and ./R2/fold_2/X_std.npy
+	normalize_X: completed in 1.2 s
+	after normalization: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	After margin removal: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	number of training data: 50560 of which 51998.273299213346 negative and -1438.2732992133472 positive
+	args = [3, 2, False, 'relu', False, False, 1e-05, 'valid']
+	convolutional args = [[3, 3, 3, 3, 3], [2, 2, 2, 2, 2], [False, False, False, False, False], ['relu', 'relu', 'relu', 'relu', 'relu'], [False, False, False, False, False], [False, False, False, False, False], [1e-05, 1e-05, 1e-05, 1e-05, 1e-05], ['valid', 'valid', 'valid', 'valid', 'valid']]
+	dense args = [['relu', None], [False, False], [0.008, 0.008], [None, None]]
+	Loading GA Perturbation from /ClimateDynamics/MediumSpace/ClimateLearningFR/alovo/CESM/GA/r1/12--reg_c__100.0/fold_2...
+	
+	Model: "perturbative_model"
+	__________________________________________________________________________________________________
+	 Layer (type)                   Output Shape         Param #     Connected to                     
+	==================================================================================================
+	 input (InputLayer)             [(None, 95, 288, 2)  0           []                               
+	                                ]                                                                 
+	                                                                                                  
+	 gaussian_model (GaussianLayer)  (None, 2)           54721       ['input[0][0]']                  
+	                                                                                                  
+	 model (Functional)             (None, 2)            650658      ['input[0][0]']                  
+	                                                                                                  
+	 add (Add)                      (None, 2)            0           ['gaussian_model[0][0]',         
+	                                                                  'model[1][0]']                  
+	                                                                                                  
+	 Sigma_Activation (Sigma_Activa  (None, 2)           0           ['add[0][0]']                    
+	 tion)                                                                                            
+	                                                                                                  
+	==================================================================================================
+	Total params: 705,379
+	Trainable params: 650,658
+	Non-trainable params: 54,721
+	__________________________________________________________________________________________________
+	
+	Using CRPS loss
+	train_model:
+		scheduler_kwargs = {'lr': 8.2e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		Converting training data to tensors
+		Converting validation data to tensors
+		Training the network on 50560 datapoint and validating on 12640
+		
+		Learning rate for epoch 1 is 8.199999865610152e-05
+		
+		Learning rate for epoch 2 is 8.199999865610152e-05
+		
+		Learning rate for epoch 3 is 8.199999865610152e-05
+		
+		Learning rate for epoch 4 is 8.199999865610152e-05
+		
+		Learning rate for epoch 5 is 8.199999865610152e-05
+		
+		Learning rate for epoch 6 is 8.199999865610152e-05
+		
+		Learning rate for epoch 7 is 8.199999865610152e-05
+		
+		Learning rate for epoch 8 is 8.199999865610152e-05
+		
+		Learning rate for epoch 9 is 8.199999865610152e-05
+		
+		Learning rate for epoch 10 is 8.199999865610152e-05
+		
+		Learning rate for epoch 11 is 8.199999865610152e-05
+		
+		Learning rate for epoch 12 is 8.199999865610152e-05
+		
+		Learning rate for epoch 13 is 8.199999865610152e-05
+		             loss  ParametricCrossEntropyLoss  ProbRegLoss      CRPS  val_loss  val_ParametricCrossEntropyLoss  val_ProbRegLoss  val_CRPS        lr
+		epoch-1                                                                                                                                            
+		0        2.038139                    0.140679     1.548390  0.743421  1.542029                        0.141429         1.566942  0.751903  0.000082
+		1        1.264459                    0.138860     1.511231  0.732261  1.086100                        0.138395         1.538127  0.744402  0.000082
+		2        0.959784                    0.134953     1.456135  0.712963  0.912715                        0.136528         1.521114  0.734411  0.000082
+		3        0.829489                    0.129896     1.370492  0.683308  0.875170                        0.148096         1.663110  0.752059  0.000082
+		4        0.762162                    0.124251     1.274792  0.652280  0.845907                        0.147118         1.601699  0.744953  0.000082
+		5        0.711766                    0.117586     1.163192  0.616780  0.848044                        0.159654         1.760269  0.757196  0.000082
+		6        0.669478                    0.111114     1.043652  0.581436  0.856197                        0.161274         1.870599  0.769900  0.000082
+		7        0.625235                    0.102643     0.898689  0.540148  0.883126                        0.172849         2.139164  0.797837  0.000082
+		8        0.580734                    0.094968     0.735388  0.497014  0.959177                        0.248048         3.573078  0.874567  0.000082
+		9        0.539863                    0.087233     0.571009  0.456552  0.935149                        0.233501         3.676074  0.851679  0.000082
+		10       0.499501                    0.080189     0.392308  0.416172  0.948595                        0.240700         3.639616  0.865084  0.000082
+		11       0.465186                    0.074722     0.229006  0.381799  0.972894                        0.276994         4.928308  0.889257  0.000082
+		12       0.431810                    0.067220     0.055730  0.348253  0.971827                        0.281186         5.756292  0.888413  0.000082
+		score = 0.1365283727645874
+	train_model: completed in 2 min 21.6 s
+	RAM memory: 8.724e+10
+	=============
+	fold 3 (4/5)
+	=============
+	ln.current_fold = 3
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 2.9 s
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R2/fold_3/X_mean.npy and ./R2/fold_3/X_std.npy
+	normalize_X: completed in 34.9 s
+	normalize_X:
+		loading from: ./R2/fold_3/X_mean.npy and ./R2/fold_3/X_std.npy
+	normalize_X: completed in 1.2 s
+	after normalization: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	After margin removal: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	number of training data: 50560 of which 51196.11055805184 negative and -636.1105580518446 positive
+	args = [3, 2, False, 'relu', False, False, 1e-05, 'valid']
+	convolutional args = [[3, 3, 3, 3, 3], [2, 2, 2, 2, 2], [False, False, False, False, False], ['relu', 'relu', 'relu', 'relu', 'relu'], [False, False, False, False, False], [False, False, False, False, False], [1e-05, 1e-05, 1e-05, 1e-05, 1e-05], ['valid', 'valid', 'valid', 'valid', 'valid']]
+	dense args = [['relu', None], [False, False], [0.008, 0.008], [None, None]]
+	Loading GA Perturbation from /ClimateDynamics/MediumSpace/ClimateLearningFR/alovo/CESM/GA/r1/12--reg_c__100.0/fold_3...
+	
+	Model: "perturbative_model"
+	__________________________________________________________________________________________________
+	 Layer (type)                   Output Shape         Param #     Connected to                     
+	==================================================================================================
+	 input (InputLayer)             [(None, 95, 288, 2)  0           []                               
+	                                ]                                                                 
+	                                                                                                  
+	 gaussian_model (GaussianLayer)  (None, 2)           54721       ['input[0][0]']                  
+	                                                                                                  
+	 model (Functional)             (None, 2)            650658      ['input[0][0]']                  
+	                                                                                                  
+	 add (Add)                      (None, 2)            0           ['gaussian_model[0][0]',         
+	                                                                  'model[1][0]']                  
+	                                                                                                  
+	 Sigma_Activation (Sigma_Activa  (None, 2)           0           ['add[0][0]']                    
+	 tion)                                                                                            
+	                                                                                                  
+	==================================================================================================
+	Total params: 705,379
+	Trainable params: 650,658
+	Non-trainable params: 54,721
+	__________________________________________________________________________________________________
+	
+	Using CRPS loss
+	train_model:
+		scheduler_kwargs = {'lr': 8.2e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		Converting training data to tensors
+		Converting validation data to tensors
+		Training the network on 50560 datapoint and validating on 12640
+		
+		Learning rate for epoch 1 is 8.199999865610152e-05
+		
+		Learning rate for epoch 2 is 8.199999865610152e-05
+		
+		Learning rate for epoch 3 is 8.199999865610152e-05
+		
+		Learning rate for epoch 4 is 8.199999865610152e-05
+		
+		Learning rate for epoch 5 is 8.199999865610152e-05
+		
+		Learning rate for epoch 6 is 8.199999865610152e-05
+		
+		Learning rate for epoch 7 is 8.199999865610152e-05
+		
+		Learning rate for epoch 8 is 8.199999865610152e-05
+		
+		Learning rate for epoch 9 is 8.199999865610152e-05
+		
+		Learning rate for epoch 10 is 8.199999865610152e-05
+		
+		Learning rate for epoch 11 is 8.199999865610152e-05
+		
+		Learning rate for epoch 12 is 8.199999865610152e-05
+		
+		Learning rate for epoch 13 is 8.199999865610152e-05
+		
+		Learning rate for epoch 14 is 8.199999865610152e-05
+		
+		Learning rate for epoch 15 is 8.199999865610152e-05
+		             loss  ParametricCrossEntropyLoss  ProbRegLoss      CRPS  val_loss  val_ParametricCrossEntropyLoss  val_ProbRegLoss  val_CRPS        lr
+		epoch-1                                                                                                                                            
+		0        2.045128                    0.140615     1.550689  0.744814  1.547309                        0.139463         1.544104  0.741225  0.000082
+		1        1.280263                    0.138149     1.518999  0.735028  1.089339                        0.138392         1.522652  0.734601  0.000082
+		2        0.972770                    0.135548     1.472590  0.718646  0.910931                        0.138132         1.500278  0.725661  0.000082
+		3        0.837783                    0.131212     1.388221  0.689143  0.850685                        0.138520         1.503430  0.725327  0.000082
+		4        0.770599                    0.126159     1.301395  0.660223  0.821538                        0.136686         1.488351  0.719424  0.000082
+		5        0.724721                    0.121859     1.205902  0.629802  0.842012                        0.144600         1.600562  0.749301  0.000082
+		6        0.682789                    0.116123     1.093143  0.594950  0.827617                        0.144422         1.648875  0.740822  0.000082
+		7        0.642859                    0.108559     0.966257  0.558231  0.858374                        0.151993         1.876833  0.773150  0.000082
+		8        0.600336                    0.101158     0.824941  0.517456  0.873420                        0.167461         2.183179  0.789425  0.000082
+		9        0.561834                    0.095688     0.670487  0.479200  0.901135                        0.197009         2.631906  0.817533  0.000082
+		10       0.523656                    0.088531     0.508005  0.441034  0.905110                        0.192058         2.651888  0.821529  0.000082
+		11       0.484535                    0.081029     0.328326  0.402009  0.950342                        0.226884         3.727850  0.867051  0.000082
+		12       0.453746                    0.076007     0.175195  0.370586  0.964676                        0.269235         4.720375  0.879863  0.000082
+		13       0.418281                    0.068636    -0.013471  0.334988  0.994196                        0.279375         5.820434  0.909745  0.000082
+		14       0.392311                    0.064854    -0.169681  0.308942  0.997539                        0.286839         5.904165  0.913494  0.000082
+		score = 0.13668562471866608
+	train_model: completed in 2 min 42.3 s
+	RAM memory: 8.741e+10
+	=============
+	fold 4 (5/5)
+	=============
+	ln.current_fold = 4
+	k_fold_cross_val_split:
+	k_fold_cross_val_split: completed in 0.7 s
+	normalize_X:
+		0.0000\% of the data have non zero std below 1e-4
+		saving to: ./R2/fold_4/X_mean.npy and ./R2/fold_4/X_std.npy
+	normalize_X: completed in 10.7 s
+	normalize_X:
+		loading from: ./R2/fold_4/X_mean.npy and ./R2/fold_4/X_std.npy
+	normalize_X: completed in 1.2 s
+	after normalization: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	 time_start = 31, time_end = 123, leftmargin = None, rightmargin = None, T = 14
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	margin_removal_with_sliding_window:
+	margin_removal_with_sliding_window: completed in 0.0 s
+	After margin removal: X_tr.shape = (50560, 95, 288, 2), X_va.shape = (12640, 95, 288, 2), Y_tr.shape = (50560,), Y_va.shape = (12640,)
+	number of training data: 50560 of which 51071.648143603656 negative and -511.64814360365324 positive
+	args = [3, 2, False, 'relu', False, False, 1e-05, 'valid']
+	convolutional args = [[3, 3, 3, 3, 3], [2, 2, 2, 2, 2], [False, False, False, False, False], ['relu', 'relu', 'relu', 'relu', 'relu'], [False, False, False, False, False], [False, False, False, False, False], [1e-05, 1e-05, 1e-05, 1e-05, 1e-05], ['valid', 'valid', 'valid', 'valid', 'valid']]
+	dense args = [['relu', None], [False, False], [0.008, 0.008], [None, None]]
+	Loading GA Perturbation from /ClimateDynamics/MediumSpace/ClimateLearningFR/alovo/CESM/GA/r1/12--reg_c__100.0/fold_4...
+	
+	Model: "perturbative_model"
+	__________________________________________________________________________________________________
+	 Layer (type)                   Output Shape         Param #     Connected to                     
+	==================================================================================================
+	 input (InputLayer)             [(None, 95, 288, 2)  0           []                               
+	                                ]                                                                 
+	                                                                                                  
+	 gaussian_model (GaussianLayer)  (None, 2)           54721       ['input[0][0]']                  
+	                                                                                                  
+	 model (Functional)             (None, 2)            650658      ['input[0][0]']                  
+	                                                                                                  
+	 add (Add)                      (None, 2)            0           ['gaussian_model[0][0]',         
+	                                                                  'model[1][0]']                  
+	                                                                                                  
+	 Sigma_Activation (Sigma_Activa  (None, 2)           0           ['add[0][0]']                    
+	 tion)                                                                                            
+	                                                                                                  
+	==================================================================================================
+	Total params: 705,379
+	Trainable params: 650,658
+	Non-trainable params: 54,721
+	__________________________________________________________________________________________________
+	
+	Using CRPS loss
+	train_model:
+		scheduler_kwargs = {'lr': 8.2e-05, 'epoch_tol': None, 'warmup': False, 'lr_min': 0.0005, 'decay': 0.1}
+		Converting training data to tensors
+		Converting validation data to tensors
+		Training the network on 50560 datapoint and validating on 12640
+		
+		Learning rate for epoch 1 is 8.199999865610152e-05
+		
+		Learning rate for epoch 2 is 8.199999865610152e-05
+		
+		Learning rate for epoch 3 is 8.199999865610152e-05
+		
+		Learning rate for epoch 4 is 8.199999865610152e-05
+		
+		Learning rate for epoch 5 is 8.199999865610152e-05
+		
+		Learning rate for epoch 6 is 8.199999865610152e-05
+		
+		Learning rate for epoch 7 is 8.199999865610152e-05
+		
+		Learning rate for epoch 8 is 8.199999865610152e-05
+		
+		Learning rate for epoch 9 is 8.199999865610152e-05
+		
+		Learning rate for epoch 10 is 8.199999865610152e-05
+		
+		Learning rate for epoch 11 is 8.199999865610152e-05
+		
+		Learning rate for epoch 12 is 8.199999865610152e-05
+		             loss  ParametricCrossEntropyLoss  ProbRegLoss      CRPS  val_loss  val_ParametricCrossEntropyLoss  val_ProbRegLoss  val_CRPS        lr
+		epoch-1                                                                                                                                            
+		0        2.034204                    0.139645     1.540538  0.740151  1.553169                        0.148615         1.592214  0.759901  0.000082
+		1        1.259754                    0.137600     1.504699  0.729373  1.097391                        0.144657         1.567474  0.753004  0.000082
+		2        0.954633                    0.134023     1.450792  0.710491  0.930207                        0.145256         1.565540  0.751400  0.000082
+		3        0.822882                    0.128433     1.364381  0.680648  0.872717                        0.145407         1.586712  0.751299  0.000082
+		4        0.760377                    0.124305     1.282834  0.654375  0.851169                        0.158947         1.671875  0.750427  0.000082
+		5        0.715298                    0.119358     1.185724  0.623605  0.844451                        0.155561         1.710032  0.753171  0.000082
+		6        0.672169                    0.112119     1.064247  0.586861  0.859380                        0.166655         1.921627  0.772569  0.000082
+		7        0.630350                    0.105270     0.926179  0.547820  0.883832                        0.172331         2.336462  0.798386  0.000082
+		8        0.587201                    0.097123     0.776547  0.505808  0.912662                        0.210449         2.626271  0.827053  0.000082
+		9        0.545178                    0.090671     0.607964  0.464110  0.932062                        0.191951         3.051724  0.846680  0.000082
+		10       0.503547                    0.083302     0.425127  0.422257  0.948430                        0.214249         3.729878  0.862952  0.000082
+		11       0.466095                    0.076993     0.237302  0.384374  0.973521                        0.236493         4.748472  0.886692  0.000082
+		score = 0.14465738832950592
+	train_model: completed in 2 min 11.8 s
+	RAM memory: 8.754e+10
+	
+	Final scores:
+		fold 0: 0.1321876496076584
+		fold 1: 0.13637115061283112
+		fold 2: 0.1365283727645874
+		fold 3: 0.13668562471866608
+		fold 4: 0.14465738832950592
+	Average score: 0.137+/-0.004
+k_fold_cross_val: completed in 15 min 48.5 s
