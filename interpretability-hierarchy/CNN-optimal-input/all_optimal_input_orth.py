@@ -86,7 +86,7 @@ lon, lat = np.load('../common/lon.npy'), np.load('../common/lat.npy')
 
 start_time = time.time()
 
-dataset_filename = 'CNN-oi_d_orth_1.nc'
+dataset_filename = 'CNN-oi_orth_1.nc'
 if os.path.exists(dataset_filename):
     raise FileExistsError()
 
@@ -167,10 +167,10 @@ area_weights = geosep.inv_reshape(area_weights)
 area_weights = tf.convert_to_tensor(area_weights, dtype=tf.float32)
 
 reg_kwargs = dict(l1coef=0, l2coef=100, target_l2=0.7, rough_coef=0.1, target_roughness=28)
-oir_kwargs = dict(maxiter=400, lr=0.02, ori_coef=30, orth_coef=10)
+oir_kwargs = dict(maxiter=400, lr=0.02, ori_coef=0, orth_coef=10)
 
 reg = oi.Regularizer(gradient_regularizer=gr, area_weights=area_weights, **reg_kwargs)
-oir = OrthOptimalInput(lambda x: model(x)[...,0], reg, orth_model = lambda x: ga_model(x)[...,0], physical_mask=physical_mask, weights=area_weights, **oir_kwargs)
+oir = OrthOptimalInput(lambda x: model(x)[...,0] - ga_model(x)[...,0], reg, orth_model = lambda x: ga_model(x)[...,0], physical_mask=physical_mask, weights=area_weights, **oir_kwargs)
 
 
 ## compute optimal input for all* data
@@ -185,7 +185,7 @@ all_info = None
 all_optim = []
 for b in range(nbatches):
     print(f'batch {b+1}/{nbatches}')
-    all_optim.append(oir(subset[batch_size*b:batch_size*(b+1)]) - subset[batch_size*b:batch_size*(b+1)])
+    all_optim.append(oir(subset[batch_size*b:batch_size*(b+1)]))
     oir.info['ga_output'] = ga_model(oir.info['input'])[...,0].numpy()
     if all_info is None:
         all_info = {k:v for k,v in oir.info.items() if k != 'input'}
@@ -207,7 +207,7 @@ optim_da = xr.DataArray(all_optim, coords={
 
 ds = xr.Dataset({k: xr.DataArray(v, coords={'time': time_indices}) for k,v in all_info.items()})
 
-ds['delta_input'] = optim_da
+ds['optimal_input'] = optim_da
 
 ds.attrs = {**reg_kwargs, **oir_kwargs}
 
