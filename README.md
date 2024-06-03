@@ -1,5 +1,11 @@
 # Code for the paper "Interpretability of prediction in a hierarchy of Machine Learning models for extreme heatwaves"
 
+## Useful links
+
+[repo of manuscript](https://github.com/AlessandroLovo/InterpretabilityDeepLearningHeatwaves)
+
+Preprint of paper: ???
+
 ## Setup
 
 To be able to run the notebooks in this repository, you need to clone the [Climate-Learning](https://github.com/georgemilosh/Climate-Learning) repository.
