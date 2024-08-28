@@ -86,7 +86,10 @@ lon, lat = np.load('../common/lon.npy'), np.load('../common/lat.npy')
 
 start_time = time.time()
 
-dataset_filename = 'CNN-oi_d_orth_1.nc'
+## select the fold
+fold = 0
+
+dataset_filename = f'CNN-oi_d_orth_fold{fold}.nc'
 if os.path.exists(dataset_filename):
     raise FileExistsError()
 
@@ -121,8 +124,6 @@ for k,run in runs.items():
 
 run = runs['0']
 run_folder = f"{folder}/{run['name']}"
-
-fold = 0
 
 X_mean = np.load(f'../common/r800y/fold_{fold}/X_mean.npy')
 X_std = np.load(f'../common/r800y/fold_{fold}/X_std.npy')
