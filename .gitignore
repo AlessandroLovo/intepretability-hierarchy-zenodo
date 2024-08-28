@@ -2,5 +2,5 @@
 *.png
 *.ipynb_checkpoints*
 *__pycache__*
-
+*_old*
 Climate-Learning*
