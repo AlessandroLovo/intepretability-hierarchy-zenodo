@@ -99,6 +99,19 @@ X_std = np.load(f'../common/r800y/fold_{fold}/X_std.npy')
 model = get_model(run, fold, folder)
 model.summary()
 
+## get gaussian model (only for info, not used in the optimization process)
+
+pert_folder = 'GApCNN/r800y'
+pert_run = get_completed(pert_folder)['0']
+pert_run_folder = f"{pert_folder}/{pert_run['name']}"
+
+assert (X_mean == np.load(f'{pert_run_folder}/fold_{fold}/X_mean.npy')).all()
+assert (X_std == np.load(f'{run_folder}/fold_{fold}/X_std.npy')).all()
+full_model = get_model(pert_run, fold, pert_folder)
+# split the model
+ga_model = tf.keras.Sequential(full_model.layers[:2])
+ga_model.summary()
+
 ## model output
 
 X_norm = (X_te - X_mean)/X_std
@@ -140,6 +153,7 @@ all_optim = []
 for b in range(nbatches):
     print(f'batch {b+1}/{nbatches}')
     all_optim.append(oir(subset[batch_size*b:batch_size*(b+1)]))
+    oir.info['ga_output'] = ga_model(oir.info['input'])[...,0].numpy()
     if all_info is None:
         all_info = {k:v for k,v in oir.info.items() if k != 'input'}
     else:
