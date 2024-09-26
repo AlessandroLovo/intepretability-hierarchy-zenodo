@@ -1,5 +1,6 @@
 *.pdf
 *.png
+*.DS_Store
 *.ipynb_checkpoints*
 *__pycache__*
 *_old*
