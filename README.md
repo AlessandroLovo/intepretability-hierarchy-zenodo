@@ -1,4 +1,6 @@
-# Code for the paper "Interpretability of prediction in a hierarchy of Machine Learning models for extreme heatwaves"
+# Code for the paper "Tackling the Accuracy-Interpretability Trade-off in a Hierarchy of Machine Learning Models for the Prediction of Extreme Heatwaves"
+
+[![DOI](https://zenodo.org/badge/803365588.svg)](https://zenodo.org/doi/10.5281/zenodo.13844551)
 
 ## Useful links
 
