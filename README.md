@@ -25,4 +25,16 @@ This repo contains data and notebooks to reproduce the figures and tables presen
 
 ### List of notebooks
 
-- [Miscellaneous calculations](misc.ipynb)
+- Data normalization procedure [here](interpretability-hierarchy/misc.ipynb)
+- Performance of the hierarachy [here](interpretability-hierarchy/performance.ipynb)
+- Interpretability
+    - GA and IINN [here](interpretability-hierarchy/interpret_GA-IINN.ipynb)
+    - CNN
+        - Expected Gradient Feature Importance maps [here](interpretability-hierarchy/interpret_CNN_EGFI.ipynb)
+        - Optimal Input Maps [here](interpretability-hierarchy/CNN-optimal-input/optimal_input.ipynb)
+    - Scatnet [here](interpretability-hierarchy/interpret_ScatNet.ipynb)
+
+
+### Debugging help
+
+- Test if you can properly load our neural networks [here](interpretability-hierarchy/test_load_model.ipynb)
